@@ -13,3 +13,34 @@
  *= require_tree .
  *= require_self
  */
+@import "bootstrap";
+
+body{
+  background-color: white;
+  font-size: 14px;
+  color: #262626;
+}
+
+.navbar{
+  box-shadow: 0 1px 1px #777;
+  height: 60px;
+  margin: auto;
+  padding-left: 25vw;
+  padding-right: 20vw;
+}
+
+.navbar-brand > img {
+  height: 2.5vw;
+}
+
+a > i{
+  font-size: 1.25vw;
+  margin-right: 1vw;
+}
+
+.search-bar{
+  margin-left: 8vw;
+  background-color: #eeeded;
+  height: 2vw;
+  font-size: 0.9vw;
+}
