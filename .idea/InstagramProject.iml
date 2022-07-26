@@ -35,6 +35,7 @@
     <orderEntry type="library" scope="PROVIDED" name="activejob (v5.2.8, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activemodel (v5.2.8, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activerecord (v5.2.8, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="activerecord-session_store (v2.0.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activestorage (v5.2.8, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="activesupport (v5.2.8, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="addressable (v2.8.0, ruby-2.7.4-p191) [gem]" level="application" />
@@ -60,13 +61,17 @@
     <orderEntry type="library" scope="PROVIDED" name="devise (v4.8.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="erubi (v1.10.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="execjs (v2.8.1, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faraday (v2.3.0, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="faraday-net_http (v2.0.3, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.15.5, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.0.0, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hashie (v5.0.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.10.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="image_processing (v1.12.2, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="io-like (v0.3.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.11.5, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jquery-rails (v4.5.0, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="jwt (v2.4.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="listen (v3.1.5, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="loofah (v2.18.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="mail (v2.7.1, ruby-2.7.4-p191) [gem]" level="application" />
@@ -77,8 +82,14 @@
     <orderEntry type="library" scope="PROVIDED" name="mini_mime (v1.1.2, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="minitest (v5.15.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="msgpack (v1.5.2, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_json (v1.15.0, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="multi_xml (v0.6.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v2.5.8, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.13.6, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="oauth2 (v2.0.6, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth (v2.1.0, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth-facebook (v9.0.0, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="omniauth-oauth2 (v1.8.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="orm_adapter (v0.5.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parallel (v1.22.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="parser (v3.1.2.0, ruby-2.7.4-p191) [gem]" level="application" />
@@ -88,6 +99,7 @@
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.12.6, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="racc (v1.6.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.2.3.1, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rack-protection (v2.2.2, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v1.1.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v5.2.8, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.0.3, ruby-2.7.4-p191) [gem]" level="application" />
@@ -95,6 +107,7 @@
     <orderEntry type="library" scope="PROVIDED" name="railties (v5.2.8, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rainbow (v3.1.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rake (v13.0.6, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rash_alt (v0.4.12, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-fsevent (v0.11.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rb-inotify (v0.10.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="regexp_parser (v2.5.0, ruby-2.7.4-p191) [gem]" level="application" />
@@ -104,6 +117,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rubocop-ast (v1.18.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-progressbar (v1.11.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby-vips (v2.1.4, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="ruby2_keywords (v0.0.5, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby_dep (v1.5.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rubyzip (v2.3.2, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.7.4, ruby-2.7.4-p191) [gem]" level="application" />
@@ -117,11 +131,13 @@
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.2.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thread_safe (v0.3.6, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.10, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="toastr-rails (v1.0.3, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v5.2.1, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks-source (v5.2.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v1.2.9, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uglifier (v4.2.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v2.1.0, ruby-2.7.4-p191) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="version_gem (v1.1.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="warden (v1.2.9, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="web-console (v3.7.0, ruby-2.7.4-p191) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="websocket (v1.2.9, ruby-2.7.4-p191) [gem]" level="application" />
@@ -136,70 +152,76 @@
   <component name="RailsGeneratorsCache">
     <option name="generators">
       <list>
-        <option value="active_record:application_record" />
-        <option value="active_record:devise" />
-        <option value="application_record" />
-        <option value="assets" />
-        <option value="channel" />
-        <option value="coffee:assets" />
+        <option value="active_record:migration" />
+        <option value="active_record:model" />
+        <option value="active_record:observer" />
+        <option value="active_record:session_migration" />
         <option value="controller" />
-        <option value="devise" />
-        <option value="devise:controllers" />
-        <option value="devise:install" />
-        <option value="devise:views" />
+        <option value="erb:controller" />
+        <option value="erb:mailer" />
+        <option value="erb:scaffold" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
-        <option value="jbuilder" />
-        <option value="job" />
-        <option value="js:assets" />
         <option value="mailer" />
+        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="mongoid:devise" />
+        <option value="model_subclass" />
+        <option value="observer" />
+        <option value="performance_test" />
+        <option value="plugin" />
         <option value="resource" />
-        <option value="responders:install" />
-        <option value="responders_controller" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="system_test" />
-        <option value="task" />
-        <option value="test_unit:generator" />
+        <option value="session_migration" />
+        <option value="stylesheets" />
+        <option value="test_unit:controller" />
+        <option value="test_unit:helper" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
+        <option value="test_unit:observer" />
+        <option value="test_unit:performance" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
       </list>
     </option>
     <option name="myGenerators">
       <list>
-        <option value="active_record:application_record" />
-        <option value="active_record:devise" />
-        <option value="application_record" />
-        <option value="assets" />
-        <option value="channel" />
-        <option value="coffee:assets" />
+        <option value="active_record:migration" />
+        <option value="active_record:model" />
+        <option value="active_record:observer" />
+        <option value="active_record:session_migration" />
         <option value="controller" />
-        <option value="devise" />
-        <option value="devise:controllers" />
-        <option value="devise:install" />
-        <option value="devise:views" />
+        <option value="erb:controller" />
+        <option value="erb:mailer" />
+        <option value="erb:scaffold" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
-        <option value="jbuilder" />
-        <option value="job" />
-        <option value="js:assets" />
         <option value="mailer" />
+        <option value="metal" />
         <option value="migration" />
         <option value="model" />
-        <option value="mongoid:devise" />
+        <option value="model_subclass" />
+        <option value="observer" />
+        <option value="performance_test" />
+        <option value="plugin" />
         <option value="resource" />
-        <option value="responders:install" />
-        <option value="responders_controller" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
-        <option value="system_test" />
-        <option value="task" />
-        <option value="test_unit:generator" />
+        <option value="session_migration" />
+        <option value="stylesheets" />
+        <option value="test_unit:controller" />
+        <option value="test_unit:helper" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
+        <option value="test_unit:observer" />
+        <option value="test_unit:performance" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
       </list>
     </option>
   </component>

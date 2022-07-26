@@ -1,0 +1,45 @@
+<!-- Phone with images carousel -->
+<div class="phone">
+  <div class="parent">
+
+    <!-- To display two phones, one on front and one on back -->
+    <%= image_tag "iphone_black.jpg", :class => "iphone"%>
+    <%= image_tag "iphone_white.png", :class => "iphone1"%>
+    <!-- To display two phones, one on front and one on back -->
+
+    <div class="screenshot">
+      <div class="carousel carousel slide" data-ride="carousel">
+
+        <!-- Carousel of images inside the front phone screen -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag "screenshot1.png", :class => "size-screenshot"%>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag "screenshot2.png", :class => "size-screenshot"%>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag "screenshot3.png", :class => "size-screenshot"%>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag "screenshot4.png", :class => "size-screenshot"%>
+          </div>
+        </div>
+        <!-- Carousel of images inside the phone screen -->
+
+      </div>
+    </div>
+  </div>
+
+  <!--  To ensure carousel turns every time it is called-->
+  <script type='text/javascript'>
+      $(document).ready(function() {
+          $('.carousel').carousel({
+              interval: 4000
+          })
+      });
+  </script>
+  <!--  To ensure carousel turns every time it is called-->
+
+</div>
+<!-- Phone with images carousel -->

@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  validates :fullname, presence: true, length: {maximum: 50}
+
   has_one_attached :avatar
 
   after_commit :add_default_avatar, on: %i[create update]
@@ -14,7 +16,7 @@ class User < ApplicationRecord
     if avatar.attached?
       avatar.variant(resize: '150x150!').processed
     else
-      '/default_avatar.jpg'
+      '/default-avatar.jpg'
     end
   end
 
@@ -25,9 +27,9 @@ class User < ApplicationRecord
       avatar.attach(
         io: File.open(
           Rails.root.join(
-            'app', 'assets', 'images', 'default_avatar.jpg'
+            'app', 'assets', 'images', 'default-avatar.jpg'
           )
-        ), filename: 'default_avatar.jpg',
+        ), filename: 'default-avatar.jpg',
         content_type: 'image/jpg'
       )
     end
