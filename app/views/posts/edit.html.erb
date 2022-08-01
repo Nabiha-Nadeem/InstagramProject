@@ -1,0 +1,7 @@
+<div class="edit-post text-center">
+  <%= form_for :post, { :url => post_path, :method => :patch } do |f| %>
+      <%= f.label :content %>
+      <%= f.text_field :content %>
+      <%= f.submit "Update" %>
+  <% end %>
+</div>

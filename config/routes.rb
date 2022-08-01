@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
-  root 'pages#home'
+  root 'posts#index'
   devise_for :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :users, only: [:show]
+
+  resources :posts, only: %i[index show create update destroy edit] do
+    resources :photos, only: [:create]
+  end
 end

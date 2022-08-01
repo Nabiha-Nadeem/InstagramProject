@@ -23,7 +23,7 @@
 
           <div class="form-group">
             <span class="form-header"> Bio </span>
-            <%= f.text_area :bio, autofocus: true, class: "form-control"%>
+            <%= f.text_field :bio, autofocus: true, class: "form-control"%>
           </div>
 
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
