@@ -5,23 +5,18 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_post, only: %i[show destroy update]
 
-  def index
-    @posts = Post.all.includes(:photos)
-    @post = Post.new
-  end
-
   def create
     @post = current_user.posts.build(post_params)
     if params[:images].count < 11
       save_photos
     else
-      redirect_to posts_create_path
+      redirect_to users_path
       (flash[:alert] = 'Please add less than 10 images!')
     end
   end
 
   def destroy
-    redirect_to posts_path
+    redirect_to users_path
     if @post.user == current_user
       if @post.destroy
         flash[:notice] = 'Post deleted!'
@@ -34,7 +29,7 @@ class PostsController < ApplicationController
   end
 
   def update
-    redirect_to posts_path
+    redirect_to users_path
     if @post.user == current_user
       if @post.update(post_params)
         flash[:notice] = 'Post updated!'
@@ -70,11 +65,11 @@ class PostsController < ApplicationController
       params[:images]&.each do |img|
         @post.photos.create(image: img)
       end
-      redirect_to posts_path
+      redirect_to users_path
       (flash[:notice] = 'Saved!')
     else
       (flash[:alert] = 'An unexpected error occurred!')
-      redirect_to posts_path
+      redirect_to users_path
     end
   end
 end

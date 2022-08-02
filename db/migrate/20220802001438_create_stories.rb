@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-# to create posts
-class CreatePosts < ActiveRecord::Migration[5.2]
+# to create stories
+class CreateStories < ActiveRecord::Migration[5.2]
   def change
-    create_table :posts do |t|
-      t.string :content
+    create_table :stories do |t|
       t.references :user, foreign_key: true
-
       t.timestamps
     end
   end
