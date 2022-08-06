@@ -5,6 +5,8 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :stories, dependent: :destroy
 
+  scope :with_stories, -> { where('EXISTS(SELECT * FROM stories WHERE user_id = users.id)') }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

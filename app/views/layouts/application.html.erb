@@ -11,16 +11,20 @@
 </head>
 
 <body>
-<%= render 'shared/navbar' if current_user %>
 
+<% unless controller_name == "stories" %>
+<%= render 'shared/navbar' if current_user %>
+<% end %>
 
 <div class="container">
   <%= yield %>
 </div>
 
-
 </body>
-<%= render 'shared/footer'%>
+
+<% unless controller_name == "stories" %>
+  <%= render 'shared/footer' %>
+<% end %>
 
 <!--For toastr notifications -->
 <% if flash.any? %>

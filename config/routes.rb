@@ -11,6 +11,6 @@ Rails.application.routes.draw do
   end
 
   resources :stories, only: %i[show create destroy] do
-    resource :photos, only: [:create]
+    resource :photos, only: %i[create]
   end
 end

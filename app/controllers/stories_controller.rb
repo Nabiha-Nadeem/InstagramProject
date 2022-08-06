@@ -16,10 +16,13 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @stories = @story.photos
+    @user = User.find(params[:id])
+    @stories = @user.stories
+    @oldest_story = @stories.order('created_at asc').first
   end
 
   private
+
   def save_story
     if @story.save
       @story.photos.create(image: params[:image])
@@ -30,5 +33,4 @@ class StoriesController < ApplicationController
       redirect_to users_path
     end
   end
-
 end

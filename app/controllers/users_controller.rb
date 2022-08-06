@@ -11,8 +11,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.all
-    @stories = Story.all.includes(:photos)
+    @users_with_story = User.with_stories
     @story = Story.new
     @posts = Post.all.includes(:photos)
     @post = Post.new
