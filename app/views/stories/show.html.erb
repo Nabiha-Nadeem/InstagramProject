@@ -3,18 +3,33 @@
   <div class="row">
     <div class="story-column">
       <div class="story-box">
-        <div class="story-header">
-          <%= image_tag(@user.avatar_thumbnail, class: "thumbnail-avatar") %>
-          <%= link_to @user.fullname, user_path(@user.id), class: "btn story-username" %>
-        </div>
+            <div class="story-header">
+            <%= image_tag(@user.avatar_thumbnail, class: "thumbnail-avatar") %>
+            <%= link_to @user.fullname, user_path(@user.id), class: "btn story-username" %>
+            </div>
           <% if @stories.count == 1 %>
-          <a class="story-time"><%= time_ago_in_words(@stories.first.created_at).upcase + " AGO"%></a>
+            <% if @stories.first.user == current_user %>
+              <div class="delete-story">
+                <%= link_to story_path(@stories.first), data: { confirm: "Delete this story?" },
+                            method: :delete, class:"story-btn" do %>
+                  <i class="fa-solid fa-trash"></i>
+                <% end %>
+              </div>
+            <% end %>
+            <a class="story-time"><%= time_ago_in_words(@stories.first.created_at).upcase + " AGO"%></a>
             <%= image_tag @stories.first.photos.first.image.url(:story) %>
           <% else %>
             <div class="carousel slide" data-ride="carousel" id="carousel-story-<%= @user.id %>">
               <div class="carousel-inner">
                 <% @stories.each do |story| %>
-                <% my_story = @oldest_story %>
+                  <% if story.user == current_user %>
+                    <div class="delete-story">
+                      <%= link_to story_path(story), data: { confirm: "Delete this story?" },
+                                  method: :delete, class:"story-btn" do %>
+                        <i class="fa-solid fa-trash"></i>
+                      <% end %>
+                    </div>
+                  <% end %>
                   <% if story.photos == @oldest_story.photos %>
                     <div class="carousel-item active">
                   <% else %>

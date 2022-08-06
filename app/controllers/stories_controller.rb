@@ -21,6 +21,20 @@ class StoriesController < ApplicationController
     @oldest_story = @stories.order('created_at asc').first
   end
 
+  def destroy
+    @story = Story.find_by id: params[:id]
+    redirect_to users_path
+    if @story.user == current_user
+      if @story.destroy
+        flash[:notice] = 'Story deleted!'
+      else
+        flash[:alert] = 'Error occurred while deleting the story!'
+      end
+    else
+      flash[:alert] = "You can't delete someone else's story!"
+    end
+  end
+
   private
 
   def save_story

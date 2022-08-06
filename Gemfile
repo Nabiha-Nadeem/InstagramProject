@@ -23,6 +23,7 @@ gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
 gem 'devise'
 gem 'jquery-rails'
+gem 'whenever'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
