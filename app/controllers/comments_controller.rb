@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
 
   def destroy
     redirect_to @post
-    if @comment.user_id == current_user.id
+    if @comment.user_id == current_user.id or @post.user_id == current_user.id
       if @comment.destroy
         flash[:notice] = 'Comment deleted!'
       else

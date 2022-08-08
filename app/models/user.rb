@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   scope :with_stories, -> { where('EXISTS(SELECT * FROM stories WHERE user_id = users.id)') }
 
