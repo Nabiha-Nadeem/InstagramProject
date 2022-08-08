@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="comment-col">
+    <%= link_to comment.user.fullname, user_path(comment.user.id), class: "btn post-username" %>
+    <%= comment.body %>
+  </div>
+  <% if comment.user == current_user %>
+    <div class="comment-col options-comment">
+      <%= link_to post_comment_path(post, comment), data: { confirm: "Delete this post?" },
+                  method: :delete, class: "homepage-post-btn" do %>
+        <i class="fa-solid fa-trash"></i>
+      <% end %>
+      <%= link_to edit_post_comment_path(post, comment), method: :get, class: "homepage-post-btn" do %>
+        <i class="fa-solid fa-pen-to-square"></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>

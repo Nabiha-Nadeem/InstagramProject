@@ -5,10 +5,11 @@
 
 @import "bootstrap";
 @import "toastr";
+$border-color: #e6e6e6;
 
 // Default body style
 body{
-  background-color: white;
+  background-color: white !important;
   font-size: 14px;
   color: #262626;
 }

@@ -7,18 +7,18 @@
             <%= image_tag(@user.avatar_thumbnail, class: "thumbnail-avatar") %>
             <%= link_to @user.fullname, user_path(@user.id), class: "btn story-username" %>
             </div>
-          <% if @stories.count == 1 %>
-            <% if @stories.first.user == current_user %>
+            <% if @stories.count == 1 %>
+              <% if @stories.first.user == current_user %>
               <div class="delete-story">
                 <%= link_to story_path(@stories.first), data: { confirm: "Delete this story?" },
                             method: :delete, class:"story-btn" do %>
                   <i class="fa-solid fa-trash"></i>
                 <% end %>
               </div>
-            <% end %>
-            <a class="story-time"><%= time_ago_in_words(@stories.first.created_at).upcase + " AGO"%></a>
-            <%= image_tag @stories.first.photos.first.image.url(:story) %>
-          <% else %>
+              <% end %>
+              <a class="story-time"><%= time_ago_in_words(@stories.first.created_at).upcase + " AGO"%></a>
+              <%= image_tag @stories.first.photos.first.image.url(:story) %>
+            <% else %>
             <div class="carousel slide" data-ride="carousel" id="carousel-story-<%= @user.id %>">
               <div class="carousel-inner">
                 <% @stories.each do |story| %>
@@ -35,11 +35,11 @@
                   <% else %>
                     <div class="carousel-item">
                   <% end %>
-                  <a class="story-time"><%= time_ago_in_words(story.created_at).upcase + " AGO"%></a>
-                  <%= image_tag story.photos.first.image.url(:story) %>
-                  </div>
-                <% end %>
-                </div>
+                      <a class="story-time"><%= time_ago_in_words(story.created_at).upcase + " AGO"%></a>
+                      <%= image_tag story.photos.first.image.url(:story) %>
+                    </div>
+                  <% end %>
+                    </div>
 
                 <a class="carousel-control-prev" href="#carousel-story-<%= @user.id %>" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -50,10 +50,10 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-          <% end %>
+            <% end %>
+            </div>
       </div>
     </div>
-
     <div class="story-column">
       <div class="story-options">
         <%= link_to root_path, method: :get do %>

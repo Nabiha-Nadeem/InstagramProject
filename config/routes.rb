@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   resources :users, only: %i[show index]
 
   resources :posts, only: %i[show create update destroy edit] do
+    resources :comments
     resources :photos, only: [:create]
   end
 
   resources :stories, only: %i[show create destroy] do
-    resource :photos, only: %i[create]
+    resource :photos, only: [:create]
   end
+
 end

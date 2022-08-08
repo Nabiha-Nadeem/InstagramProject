@@ -1,0 +1,4 @@
+<%= form_with model: [post, post.comments.build ] do |f| %>
+  <%= f.text_field :body, placeholder: "Add a comment...", class: "text_field post-comment" %>
+  <%= f.submit "Post", class: "btn submit-comment" %>
+<% end %>

@@ -68,8 +68,8 @@ class PostsController < ApplicationController
       redirect_to users_path
       (flash[:notice] = 'Saved!')
     else
-      (flash[:alert] = 'An unexpected error occurred!')
       redirect_to users_path
+      (flash[:alert] = 'An unexpected error occurred!')
     end
   end
 end
