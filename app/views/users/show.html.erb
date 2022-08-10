@@ -8,7 +8,14 @@
       <% if @user == current_user %>
         <%= link_to "Edit profile", edit_user_registration_path, class: "btn edit-profile-btn" %>
         <button class="btn fa-solid fa-gear setting-btn" data-toggle="modal" data-target="#editPageModal"></button>
+      <% else %>
+        <% if current_user.following.include?(@user) %>
+          <%= button_to "Unfollow", unfollow_user_path(@user),method: :delete, class: "btn edit-profile-btn" %>
+        <% else %>
+          <%= button_to "Follow", follow_user_path(@user), class: "btn edit-profile-btn" %>
+        <% end %>
       <% end %>
+
       <!--Modal-->
       <div class="modal fade" id="editPageModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -26,6 +33,23 @@
 
     </div>
     <div class="row">
+      <span class="user-info">
+        <strong> <%= @user.posts.count %> </strong>
+        <%= (@user.posts.count) == 1 ? 'Post' : 'Posts'%>
+      </span>
+      <span class="user-info">
+        <strong> <%= @user.followers.count %> </strong>
+        <%= (@user.followers.count) == 1 ? 'Follower' : 'Followers'%>
+      </span>
+      <span class="user-info">
+        <strong> <%= @user.following.count %> </strong>
+        <%= 'Following' %>
+      </span>
+      <br>
+      <br>
+    </div>
+
+    <div class="row">
       <p class="email"><%= @user.email %></p>
     </div>
 
@@ -37,11 +61,18 @@
 
 
 <div class="row">
-<div class="posts">
-    <% @posts.each do |post| %>
-    <div class="posts-column">
-      <%= link_to image_tag(post.photos.first.image.url(:thumbnail)), post_path(post) %>
-    </div>
+
+  <% if @user.is_private? and @user != current_user %>
+    <% if current_user.following.include?(@user) %>
+      <%= render 'posts/profile-posts' %>
+    <% else %>
+      <div class="private-account-msg text-center">
+        <strong><p> Account is private! </p></strong>
+        <p> Follow the user to see their posts! </p>
+      </div>
     <% end %>
-</div>
+  <% else %>
+    <%= render 'posts/profile-posts' %>
+  <% end %>
+
 </div>

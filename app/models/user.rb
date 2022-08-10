@@ -6,6 +6,12 @@ class User < ApplicationRecord
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :follows, dependent: :destroy
+
+  has_many :follower_relationships, foreign_key: :following_id, class_name: 'Follow'
+  has_many :followers, through: :follower_relationships
+  has_many :following_relationships, foreign_key: :user_id, class_name: 'Follow'
+  has_many :following, through: :following_relationships
 
   scope :with_stories, -> { where('EXISTS(SELECT * FROM stories WHERE user_id = users.id)') }
 

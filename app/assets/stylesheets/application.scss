@@ -148,6 +148,10 @@ footer{
       color: #868686;
     }
   }
+
+  .pt-4{
+    border-top: $border-color 1px solid;
+  }
 }
 // Footer
 
@@ -214,6 +218,15 @@ footer{
   margin: auto auto auto 50px;
 }
 
+.user-info{
+  margin-right: 30px;
+}
+
+.private-account-msg{
+  margin: 150px auto;
+  padding: 30px;
+  border: $border-color 1px solid;
+}
 // Profile Page
 
 // edit profile page
@@ -246,6 +259,7 @@ footer{
 .del-acc{
   margin-left: 40px;
 }
+
 // edit profile page
 
 // homepage (posts page)
@@ -345,3 +359,5 @@ footer{
   margin-right: 5px;
   color: black;
 }
+
+

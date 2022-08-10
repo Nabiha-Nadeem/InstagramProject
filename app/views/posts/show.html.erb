@@ -1,1 +1,7 @@
-<%= render 'posts/show-post', post: @post %>
+<% if current_user.following.include?(@post.user) or @post.user == current_user %>
+  <%= render 'posts/show-post', post: @post %>
+<% else %>
+  <div class="private-account-msg text-center">
+    <strong><p> Content Unavailable! </p></strong>
+  </div>
+<% end %>

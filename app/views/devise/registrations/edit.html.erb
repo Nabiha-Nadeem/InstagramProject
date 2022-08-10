@@ -45,6 +45,11 @@
             <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
           </div>
 
+          <div class="field">
+            <span class="form-header"> Private Account? </span>
+            <%= f.check_box :is_private, autocomplete: "is_private" %>
+          </div>
+
           <div class="actions">
             <%= f.submit "Update", class: "btn btn-primary" %>
           </div>

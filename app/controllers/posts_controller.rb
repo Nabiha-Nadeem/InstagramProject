@@ -41,9 +41,7 @@ class PostsController < ApplicationController
     end
   end
 
-  def show
-    @photos = @post.photos
-  end
+  def show; end
 
   private
 
