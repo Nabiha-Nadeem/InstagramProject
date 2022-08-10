@@ -303,7 +303,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  thinking-sphinx (~> 2.0)
+  thinking-sphinx
   toastr-rails
   turbolinks (~> 5)
   tzinfo-data
