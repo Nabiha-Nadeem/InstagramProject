@@ -12,7 +12,20 @@
         <% if current_user.following.include?(@user) %>
           <%= button_to "Unfollow", unfollow_user_path(@user),method: :delete, class: "btn edit-profile-btn" %>
         <% else %>
-          <%= button_to "Follow", follow_user_path(@user), class: "btn edit-profile-btn" %>
+          <% if current_user.sending.include?(@user) %>
+            <%= button_to "Pending Request", remove_request_path(@user),
+                          data: { confirm: "Are you sure? You will have to request the user again to follow!" },
+                          class: "btn edit-profile-btn" %>
+          <% else %>
+            <% if @user.is_private? %>
+              <%= form_tag request_user_path, method: :post %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= hidden_field_tag :following_id, @user.id %>
+              <%= submit_tag "Follow", class: "btn edit-profile-btn" %>
+            <% else %>
+              <%= button_to "Follow", follow_user_path(@user), class: "btn edit-profile-btn" %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
 
@@ -66,10 +79,17 @@
     <% if current_user.following.include?(@user) %>
       <%= render 'posts/profile-posts' %>
     <% else %>
-      <div class="private-account-msg text-center">
-        <strong><p> Account is private! </p></strong>
-        <p> Follow the user to see their posts! </p>
-      </div>
+      <% if current_user.sending.include?(@user) %>
+        <div class="private-account-msg text-center">
+          <strong><p> Account is private! </p></strong>
+          <p> Pending follow request! </p>
+        </div>
+      <% else %>
+        <div class="private-account-msg text-center">
+          <strong><p> Account is private! </p></strong>
+          <p> Follow the user to see their posts! </p>
+        </div>
+      <% end %>
     <% end %>
   <% else %>
     <%= render 'posts/profile-posts' %>
