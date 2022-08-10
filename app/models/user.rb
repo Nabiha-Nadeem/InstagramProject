@@ -2,6 +2,8 @@
 
 # User class to handle accounts of users
 class User < ApplicationRecord
+  include Searchable
+
   has_many :posts, dependent: :destroy
   has_many :stories, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -26,7 +28,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :fullname, presence: true, length: {maximum: 50}
+  validates :fullname, presence: true, length: { maximum: 50 }
 
   has_one_attached :avatar
 
@@ -54,4 +56,5 @@ class User < ApplicationRecord
       )
     end
   end
+
 end

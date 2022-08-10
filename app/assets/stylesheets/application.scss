@@ -373,3 +373,11 @@ footer{
   width: fit-content;
 }
 
+.search-result{
+  border-bottom: $border_color 1px solid;
+  padding: 10px;
+}
+
+.search-form{
+  margin-left: 150px !important;
+}

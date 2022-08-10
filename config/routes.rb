@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   delete 'unfollow/user' => 'follows#unfollow_user', as: :unfollow_user
   post 'request/user' => 'requests#create', as: :request_user
   post 'remove-request/user' => 'requests#remove_follow_request', as: :remove_request
+  post 'search/user' => 'users#search', as: :search_user
 
   resources :follows, only: :create
 

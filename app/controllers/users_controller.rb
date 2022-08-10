@@ -18,4 +18,8 @@ class UsersController < ApplicationController
     @post_new = Post.new
   end
 
+  def search
+    @users = User.search_like_any([:fullname], params[:search])
+    render template: 'users/show-results', locals: { users: @users }
+  end
 end
