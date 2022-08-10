@@ -23,7 +23,6 @@ gem 'carrierwave', '~> 1.0'
 gem 'cloudinary'
 gem 'devise'
 gem 'jquery-rails'
-gem 'thinking-sphinx'
 gem 'whenever'
 
 # Use CoffeeScript for .coffee assets and views
