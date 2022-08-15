@@ -4,7 +4,7 @@
 class FollowsController < ApplicationController
   before_action :authenticate_user!
   def follow_user
-    user_id = params[:format]
+    user_id = params[:id]
     @follow = current_user.follows.create(following_id: user_id)
     if @follow.save
       redirect_to user_path(user_id)
@@ -16,7 +16,7 @@ class FollowsController < ApplicationController
   end
 
   def unfollow_user
-    user_id = params[:format]
+    user_id = params[:id]
     follow_id = Follow.find_by(user_id: current_user.id, following_id: user_id)
     if current_user.follows.delete(follow_id)
       redirect_to user_path(user_id)

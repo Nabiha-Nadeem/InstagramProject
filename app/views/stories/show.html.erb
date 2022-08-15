@@ -4,7 +4,7 @@
     <div class="story-column">
       <div class="story-box">
             <div class="story-header">
-            <%= image_tag(@user.avatar_thumbnail, class: "thumbnail-avatar") %>
+            <%= image_tag(@user.avatar, class: "thumbnail-avatar") %>
             <%= link_to @user.fullname, user_path(@user.id), class: "btn story-username" %>
             </div>
             <% if @stories.count == 1 %>

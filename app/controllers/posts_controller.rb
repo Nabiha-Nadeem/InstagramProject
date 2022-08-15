@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 
     return if @post
 
-    flash[:danger] = 'Post not found!'
+    flash[:alert] = 'Post not found!'
     redirect_to root_path
   end
 

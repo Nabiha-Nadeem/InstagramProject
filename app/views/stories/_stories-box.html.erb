@@ -2,7 +2,7 @@
   <button class="btn fa-solid fa-circle-plus" data-toggle="modal" data-target="#addStoryModal"></button>
   <% @users_with_story.each do |user| %>
     <% if current_user.following.include?(user) or user == current_user %>
-      <%= link_to image_tag(user.avatar_thumbnail, class: "story-avatar"), story_path(user.id) ,class: "btn" %>
+      <%= link_to image_tag(user.avatar, class: "story-avatar"), story_path(user.id) ,class: "btn" %>
     <% end %>
   <% end %>
 </div>

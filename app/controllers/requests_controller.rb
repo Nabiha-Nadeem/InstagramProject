@@ -36,7 +36,7 @@ class RequestsController < ApplicationController
   end
 
   def remove_follow_request
-    user_id = params[:format]
+    user_id = params[:id]
     request_id = Request.find_by(user_id: current_user.id, following_id: user_id)
     if current_user.requests.delete(request_id)
       (flash[:notice] = 'Request removed!')
