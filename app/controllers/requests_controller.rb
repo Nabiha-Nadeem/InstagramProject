@@ -59,5 +59,9 @@ class RequestsController < ApplicationController
 
   def find_request
     @request = Request.find(params[:id])
+    return if @request
+
+    flash[:alert] = 'Request not found!'
+    redirect_to root_path
   end
 end

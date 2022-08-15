@@ -7,7 +7,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if params[:images].count < 11
+    if params[:images].count < 11 && params[:images].count.positive?
       save_photos
     else
       redirect_to users_path

@@ -52,7 +52,7 @@ class CommentsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(id: params[:post_id])
     return if @post
 
     flash[:alert] = 'Post not found!'
@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
   end
 
   def find_comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by(id: params[:id])
     return if @comment
 
     flash[:alert] = 'Comment not found!'

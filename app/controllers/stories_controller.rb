@@ -4,6 +4,7 @@
 # controller to manage stories
 class StoriesController < ApplicationController
   before_action :authenticate_user!
+  before_action :find_user, only: :show
 
   def create
     @story = current_user.stories.build
@@ -16,7 +17,6 @@ class StoriesController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
     redirect_to root_path unless current_user.following.include?(@user) || (@user == current_user)
     @stories = @user.stories
     @oldest_story = @stories.order('created_at asc').first
@@ -44,5 +44,13 @@ class StoriesController < ApplicationController
       (flash[:alert] = 'An unexpected error occurred!')
       redirect_to users_path
     end
+  end
+
+  def find_user
+    @user = User.find_by(id: params[:id])
+    return if @user
+
+    flash[:alert] = 'User not found!'
+    redirect_to root_path
   end
 end

@@ -16,7 +16,11 @@ class LikesController < ApplicationController
   private
 
   def find_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(id: params[:post_id])
+    return if @post
+
+    flash[:alert] = 'Post not found!'
+    redirect_to root_path
   end
 
   def already_liked?
