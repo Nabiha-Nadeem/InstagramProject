@@ -23,7 +23,7 @@
               <%= hidden_field_tag :following_id, @user.id %>
               <%= submit_tag "Follow", class: "btn edit-profile-btn" %>
             <% else %>
-              <%= button_to "Follow", follow_user_path(@user), class: "btn edit-profile-btn" %>
+              <%= button_to "Follow", follow_user_path(id: @user.id), class: "btn edit-profile-btn" %>
             <% end %>
           <% end %>
         <% end %>

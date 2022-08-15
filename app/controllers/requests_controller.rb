@@ -2,6 +2,7 @@
 
 # to handle requests
 class RequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_request, only: %i[update]
 
   def create

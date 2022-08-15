@@ -2,6 +2,7 @@
 
 # controller to manage comments
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_post, only: %i[edit create destroy update]
   before_action :find_comment, only: %i[edit destroy update]
 
@@ -33,7 +34,7 @@ class CommentsController < ApplicationController
 
   def destroy
     redirect_to @post
-    if @comment.user_id == current_user.id or @post.user_id == current_user.id
+    if (@comment.user_id == current_user.id) || (@post.user_id == current_user.id)
       if @comment.destroy
         flash[:notice] = 'Comment deleted!'
       else
@@ -54,7 +55,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     return if @post
 
-    flash[:danger] = 'Post not found!'
+    flash[:alert] = 'Post not found!'
     redirect_to root_path
   end
 
@@ -62,7 +63,7 @@ class CommentsController < ApplicationController
     @comment = Comment.find(params[:id])
     return if @comment
 
-    flash[:danger] = 'Comment not found!'
+    flash[:alert] = 'Comment not found!'
     redirect_to root_path
   end
 end

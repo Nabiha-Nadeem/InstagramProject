@@ -2,6 +2,7 @@
 
 # to handle likes
 class LikesController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_post
   def create
     if already_liked?
@@ -19,7 +20,7 @@ class LikesController < ApplicationController
   end
 
   def already_liked?
-    Like.where(user_id: current_user.id, post_id:
-      params[:post_id]).exists?
+    Like.exists?(user_id: current_user.id, post_id:
+      params[:post_id])
   end
 end

@@ -26,11 +26,8 @@ class StoriesController < ApplicationController
     @story = Story.find_by id: params[:id]
     redirect_to users_path
     if @story.user == current_user
-      if @story.destroy
-        flash[:notice] = 'Story deleted!'
-      else
-        flash[:alert] = 'Error occurred while deleting the story!'
-      end
+      flash[:notice] = 'Story deleted!' if @story.destroy
+      flash[:alert] = 'Error occurred while deleting the story!' unless @story.destroy
     else
       flash[:alert] = "You can't delete someone else's story!"
     end
