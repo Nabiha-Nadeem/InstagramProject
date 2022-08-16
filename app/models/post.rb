@@ -6,4 +6,6 @@ class Post < ApplicationRecord
   has_many :photos, dependent: :destroy, as: :imageable
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+
+  validates :user_id, presence: true
 end
