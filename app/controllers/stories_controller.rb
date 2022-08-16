@@ -37,9 +37,7 @@ class StoriesController < ApplicationController
 
   def save_story
     if @story.save
-      @story.photos.create(image: params[:image])
-      redirect_to users_path
-      (flash[:notice] = 'Saved!')
+      rescue_exception
     else
       (flash[:alert] = 'An unexpected error occurred!')
       redirect_to users_path
@@ -52,5 +50,14 @@ class StoriesController < ApplicationController
 
     flash[:alert] = 'User not found!'
     redirect_to root_path
+  end
+
+  def rescue_exception
+    @story.photos.create(image: params[:image])
+    redirect_to users_path
+    (flash[:notice] = 'Saved!')
+  rescue StandardError
+    redirect_to users_path
+    (flash[:alert] = 'Please add an image')
   end
 end

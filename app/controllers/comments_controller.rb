@@ -7,8 +7,7 @@ class CommentsController < ApplicationController
   before_action :find_comment, only: %i[edit destroy update]
 
   def create
-    @comment = @post.comments.create(comment_params)
-    @comment.user_id = current_user.id
+    @comment = @post.comments.create(comment_params.merge({ user_id: current_user.id }))
     redirect_to @post
     if @comment.save
       flash[:notice] = 'Commented!'
@@ -17,7 +16,9 @@ class CommentsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    redirect_to users_path unless @comment.user_id == current_user.id
+  end
 
   def update
     redirect_to @post

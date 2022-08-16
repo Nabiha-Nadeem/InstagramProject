@@ -43,5 +43,4 @@ class User < ApplicationRecord
     ), filename: 'default-avatar.jpg',
                   content_type: 'image/jpg')
   end
-
 end

@@ -3,16 +3,21 @@
 # to control posts
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_post, only: %i[show destroy update]
+  before_action :find_post, only: %i[show destroy update edit]
 
   def create
     @post = current_user.posts.build(post_params)
-    if params[:images].count < 11 && params[:images].count.positive?
-      save_photos
-    else
-      redirect_to users_path
-      (flash[:alert] = 'Please add less than 10 images!')
-    end
+    save_photos
+    # if params[:images] && params[:images].count < 11
+    #   save_photos
+    # else
+    #   redirect_to users_path
+    #   (flash[:alert] = 'Please add image (at max 10)!')
+    # end
+  end
+
+  def edit
+    redirect_to users_path unless @post.user_id == current_user.id
   end
 
   def destroy
@@ -59,15 +64,14 @@ class PostsController < ApplicationController
   end
 
   def save_photos
-    if @post.save
+    if @post.save && params[:images]
       params[:images]&.each do |img|
         @post.photos.create(image: img)
       end
-      redirect_to users_path
       (flash[:notice] = 'Saved!')
     else
-      redirect_to users_path
       (flash[:alert] = 'An unexpected error occurred!')
     end
+    redirect_to users_path
   end
 end

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# model for posts
 class Post < ApplicationRecord
   belongs_to :user
   has_many :photos, dependent: :destroy, as: :imageable
