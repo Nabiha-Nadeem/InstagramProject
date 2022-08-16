@@ -7,12 +7,12 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    raise StandardError 'Images not within range!' unless params[:images] && params[:images].count < 11
-
-    save_photos
-  rescue StandardError
-    redirect_to users_path
-    (flash[:alert] = 'Please add images (at max 10)')
+    if params[:images] && params[:images].count < 11
+      save_photos
+    else
+      redirect_to users_path
+      flash[:alert] = 'Please add images (at max 10)!'
+    end
   end
 
   def edit
@@ -64,13 +64,20 @@ class PostsController < ApplicationController
 
   def save_photos
     if @post.save
-      params[:images]&.each do |img|
-        @post.photos.create(image: img)
-      end
-      (flash[:notice] = 'Saved!')
+      save_photos_safely
     else
       (flash[:alert] = 'An unexpected error occurred!')
     end
     redirect_to users_path
+  end
+
+  def save_photos_safely
+    params[:images]&.each do |img|
+      @post.photos.create(image: img)
+    end
+    (flash[:notice] = 'Saved!')
+  rescue StandardError
+    redirect_to users_path
+    (flash[:alert] = 'Please add an image')
   end
 end

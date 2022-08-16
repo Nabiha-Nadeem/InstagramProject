@@ -5,7 +5,7 @@ class FollowsController < ApplicationController
   before_action :authenticate_user!
   def follow_user
     user_id = params[:id]
-    @follow = current_user.follows.create(following_id: user_id)
+    @follow = current_user.follows.create(following_id: params[:id])
     if @follow.save
       redirect_to user_path(user_id)
       (flash[:notice] = 'Followed!')

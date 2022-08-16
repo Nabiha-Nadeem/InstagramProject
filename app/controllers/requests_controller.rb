@@ -10,7 +10,7 @@ class RequestsController < ApplicationController
     if @request.save
       flash[:notice] = 'Follow request sent!'
     else
-      flash[:alert] = "Errors. Couldn't send follow request"
+      flash[:alert] = "Error. Couldn't send follow request"
     end
     redirect_to user_path(params[:following_id])
   end
@@ -50,15 +50,15 @@ class RequestsController < ApplicationController
 
   def create_follow(user, user_id)
     @follow = user.follows.create(following_id: user_id)
-    if @follow.save
-      (flash[:notice] = 'Accepted follow request!')
-    else
-      (flash[:alert] = 'An unexpected error occurred!')
-    end
+    return if @follow.save
+
+    raise StandardError "Couldn't accept follower!"
+  rescue StandardError
+    flash[:alert] = 'Follower could not be added!'
   end
 
   def find_request
-    @request = Request.find(params[:id])
+    @request = Request.find_by(id: params[:id])
     return if @request
 
     flash[:alert] = 'Request not found!'

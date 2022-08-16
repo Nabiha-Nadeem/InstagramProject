@@ -8,11 +8,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params.merge({ user_id: current_user.id }))
-    redirect_to @post
-    if @comment.save
-      flash[:notice] = 'Commented!'
+    if @comment.body.blank?
+      flash[:alert] = 'Cannot add empty comment!'
+      redirect_to @post
     else
-      flash[:alert] = 'Error occurred while adding the comment!'
+      save_comment
     end
   end
 
@@ -66,5 +66,14 @@ class CommentsController < ApplicationController
 
     flash[:alert] = 'Comment not found!'
     redirect_to root_path
+  end
+
+  def save_comment
+    if @comment.save
+      flash[:notice] = 'Commented!'
+    else
+      flash[:alert] = 'Error occurred while adding the comment!'
+    end
+    redirect_to @post
   end
 end
