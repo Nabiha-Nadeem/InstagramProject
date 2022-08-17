@@ -20,4 +20,4 @@
 /config/master.key
 
 # Ignore .idea folder
-/.idea/*
+.idea/
