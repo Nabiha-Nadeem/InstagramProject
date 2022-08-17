@@ -10,14 +10,12 @@ Rails.application.routes.draw do
   post 'remove-request/user' => 'requests#remove_follow_request', as: :remove_request
   post 'search/user' => 'users#search', as: :search_user
 
-  resources :follows, only: :create
-
-  resources :requests
+  resources :requests, only: %i[create index update]
 
   resources :users, only: %i[show index]
 
   resources :posts, only: %i[show create update destroy edit] do
-    resources :comments
+    resources :comments, only: %i[edit create destroy update]
     resources :likes, only: %i[create destroy]
     resources :photos, only: [:create]
   end
