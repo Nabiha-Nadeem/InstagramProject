@@ -28,8 +28,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :fullname, :email, :is_private, presence: true, length: { maximum: 50 }
-  validates :is_private, presence: true
+  validates :fullname, :email, presence: true, length: { maximum: 50 }
 
   has_one_attached :avatar
   after_commit :add_default_avatar, on: %i[create update]
