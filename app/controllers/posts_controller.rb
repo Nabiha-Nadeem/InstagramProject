@@ -4,6 +4,7 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_post, only: %i[show destroy update edit]
+  after_action :verify_authorized, only: %i[edit destroy update]
 
   def create
     @post = current_user.posts.build(post_params)
@@ -16,33 +17,27 @@ class PostsController < ApplicationController
   end
 
   def edit
-    redirect_to users_path unless @post.user_id == current_user.id
+    authorize @post
   end
 
   def destroy
-    redirect_to users_path
-    if @post.user == current_user
-      if @post.destroy
-        flash[:notice] = 'Post deleted!'
-      else
-        flash[:alert] = 'Error occurred while deleting the post!'
-      end
+    authorize @post
+    if @post.destroy
+      flash[:notice] = 'Post deleted!'
     else
-      flash[:alert] = "You can't delete someone else's post!"
+      flash[:alert] = 'Error occurred while deleting the post!'
     end
+    redirect_to users_path
   end
 
   def update
-    redirect_to users_path
-    if @post.user == current_user
-      if @post.update(post_params)
-        flash[:notice] = 'Post updated!'
-      else
-        flash[:alert] = 'Error occurred while updating the post!'
-      end
+    authorize @post
+    if @post.update(post_params)
+      flash[:notice] = 'Post updated!'
     else
-      flash[:alert] = "You can't update someone else's post!"
+      flash[:alert] = 'Error occurred while updating the post!'
     end
+    redirect_to users_path
   end
 
   def show; end

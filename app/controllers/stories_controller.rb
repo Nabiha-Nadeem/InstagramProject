@@ -5,6 +5,7 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user, only: :show
+  after_action :verify_authorized, only: %i[edit destroy update]
 
   def create
     @story = current_user.stories.build
@@ -24,13 +25,10 @@ class StoriesController < ApplicationController
 
   def destroy
     @story = Story.find_by id: params[:id]
+    authorize @story
     redirect_to users_path
-    if @story.user == current_user
-      flash[:notice] = 'Story deleted!' if @story.destroy
-      flash[:alert] = 'Error occurred while deleting the story!' unless @story.destroy
-    else
-      flash[:alert] = "You can't delete someone else's story!"
-    end
+    flash[:notice] = 'Story deleted!' if @story.destroy
+    flash[:alert] = 'Error occurred while deleting the story!' unless @story.destroy
   end
 
   private
