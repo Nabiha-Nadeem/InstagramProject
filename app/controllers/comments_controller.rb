@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
     if @comment.body.blank?
       flash[:alert] = 'Cannot add empty comment!'
       redirect_to @post
-    else
-      save_comment
+    elsif @comment.save
+      respond_to :js
     end
   end
 
@@ -34,15 +34,11 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    redirect_to @post
     if (@comment.user_id == current_user.id) || (@post.user_id == current_user.id)
-      if @comment.destroy
-        flash[:notice] = 'Comment deleted!'
-      else
-        flash[:alert] = 'Error occurred while deleting the comment!'
-      end
+      respond_to :js if @comment.destroy
     else
       flash[:alert] = "You can't delete someone else's comment!"
+      redirect_to @post
     end
   end
 
