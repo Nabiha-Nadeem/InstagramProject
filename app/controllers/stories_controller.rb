@@ -20,6 +20,7 @@ class StoriesController < ApplicationController
   def show
     redirect_to root_path unless current_user.following.include?(@user) || (@user == current_user)
     @stories = @user.stories
+    redirect_to root_path unless @stories.count.positive?
     @oldest_story = @stories.order('created_at asc').first
   end
 
