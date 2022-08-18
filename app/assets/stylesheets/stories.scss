@@ -1,3 +1,4 @@
+@import "shared-variables";
 .fa-circle-plus{
   background-color: white;
   margin: 0;
@@ -9,7 +10,7 @@
   padding: 0;
   margin: 50px auto;
   width: 451px;
-  border: #e6e6e6 solid 1px;
+  border: $border-color solid 1px;
   overflow-x: auto;
 }
 
@@ -20,7 +21,7 @@
 .story-box{
   width: 500px;
   margin: 55px 250px;
-  border: #e6e6e6 1px solid;
+  border: $border-color 1px solid;
 }
 
 .story-body{
@@ -44,6 +45,7 @@
 }
 .story-header{
   position: absolute;
+  width: 451px;
   margin: 20px;
   z-index: 100;
 }
@@ -74,3 +76,15 @@
   z-index: 100;
 }
 
+.story-btn{
+  color: white;
+  z-index: 300;
+}
+.delete-story{
+  padding: 8px;
+  position: absolute;
+  margin-left: 450px;
+  margin-top: 20px;
+  z-index: 200;
+  -webkit-text-stroke: 0.5px black;
+}
