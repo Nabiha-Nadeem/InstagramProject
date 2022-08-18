@@ -5,6 +5,7 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user, only: :show
+  after_action :verify_authorized, only: %i[edit destroy update]
 
   def create
     @story = current_user.stories.build
@@ -19,25 +20,23 @@ class StoriesController < ApplicationController
   def show
     redirect_to root_path unless current_user.following.include?(@user) || (@user == current_user)
     @stories = @user.stories
+    redirect_to root_path unless @stories.count.positive?
     @oldest_story = @stories.order('created_at asc').first
   end
 
   def destroy
     @story = Story.find_by id: params[:id]
+    authorize @story
     redirect_to users_path
-    if @story.user == current_user
-      flash[:notice] = 'Story deleted!' if @story.destroy
-      flash[:alert] = 'Error occurred while deleting the story!' unless @story.destroy
-    else
-      flash[:alert] = "You can't delete someone else's story!"
-    end
+    flash[:notice] = 'Story deleted!' if @story.destroy
+    flash[:alert] = 'Error occurred while deleting the story!' unless @story.destroy
   end
 
   private
 
   def save_story
     if @story.save
-      rescue_exception
+      save_story_safely
     else
       (flash[:alert] = 'An unexpected error occurred!')
       redirect_to users_path
@@ -52,7 +51,7 @@ class StoriesController < ApplicationController
     redirect_to root_path
   end
 
-  def rescue_exception
+  def save_story_safely
     @story.photos.create(image: params[:image])
     redirect_to users_path
     (flash[:notice] = 'Saved!')

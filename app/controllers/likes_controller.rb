@@ -7,10 +7,11 @@ class LikesController < ApplicationController
   def create
     if already_liked?
       flash[:alert] = 'You can like only once!'
+      redirect_to post_path(@post)
     else
       @post.likes.create(user_id: current_user.id)
+      respond_to :js
     end
-    redirect_to post_path(@post)
   end
 
   private
@@ -24,7 +25,6 @@ class LikesController < ApplicationController
   end
 
   def already_liked?
-    Like.exists?(user_id: current_user.id, post_id:
-      params[:post_id])
+    Like.exists?(user_id: current_user.id, post_id: params[:post_id])
   end
 end

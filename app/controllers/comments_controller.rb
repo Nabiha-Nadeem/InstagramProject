@@ -5,45 +5,36 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_post, only: %i[edit create destroy update]
   before_action :find_comment, only: %i[edit destroy update]
+  after_action :verify_authorized, only: %i[edit destroy update]
 
   def create
     @comment = @post.comments.create(comment_params.merge({ user_id: current_user.id }))
-    redirect_to @post
-    if @comment.save
-      flash[:notice] = 'Commented!'
-    else
-      flash[:alert] = 'Error occurred while adding the comment!'
+    authorize @comment
+    if @comment.body.blank?
+      flash[:alert] = 'Cannot add empty comment!'
+      redirect_to @post
+    elsif @comment.save
+      respond_to :js
     end
   end
 
   def edit
-    redirect_to users_path unless @comment.user_id == current_user.id
+    authorize @comment
   end
 
   def update
+    authorize @comment
     redirect_to @post
-    if @comment.user_id == current_user.id
-      if @comment.update(comment_params)
-        flash[:notice] = 'Comment updated!'
-      else
-        flash[:alert] = 'Error occurred while updating the comment!'
-      end
+    if @comment.update(comment_params)
+      flash[:notice] = 'Comment updated!'
     else
-      flash[:alert] = "You can't update someone else's comment!"
+      flash[:alert] = 'Error occurred while updating the comment!'
     end
   end
 
   def destroy
-    redirect_to @post
-    if (@comment.user_id == current_user.id) || (@post.user_id == current_user.id)
-      if @comment.destroy
-        flash[:notice] = 'Comment deleted!'
-      else
-        flash[:alert] = 'Error occurred while deleting the comment!'
-      end
-    else
-      flash[:alert] = "You can't delete someone else's comment!"
-    end
+    authorize @comment
+    respond_to :js if @comment.destroy
   end
 
   private
@@ -66,5 +57,14 @@ class CommentsController < ApplicationController
 
     flash[:alert] = 'Comment not found!'
     redirect_to root_path
+  end
+
+  def save_comment
+    if @comment.save
+      flash[:notice] = 'Commented!'
+    else
+      flash[:alert] = 'Error occurred while adding the comment!'
+    end
+    redirect_to @post
   end
 end
