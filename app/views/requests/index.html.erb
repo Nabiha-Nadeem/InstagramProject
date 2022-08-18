@@ -7,7 +7,7 @@
 <% else %>
   <% @requests.each do |request| %>
   <div class="row box-center text-center">
-    <%= image_tag(request.sender.avatar_thumbnail, class: "thumbnail-avatar") %>
+    <%= image_tag(request.sender.avatar, class: "thumbnail-avatar") %>
     <span class="request-text">
       <%= request.sender.fullname  %>
       has requested to follow you!
