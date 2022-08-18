@@ -2,6 +2,7 @@
 
 # module to search
 module Searchable
+  # module to make the method as class method
   module ClassMethods
     def search_like_any(attributes, keyword)
       return if attributes.blank? || keyword.blank?

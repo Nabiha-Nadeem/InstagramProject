@@ -113,7 +113,6 @@ GEM
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
-    innertube (1.0.2)
     io-like (0.3.1)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
@@ -153,6 +152,8 @@ GEM
     popper_js (1.16.0)
     public_suffix (4.0.7)
     puma (3.12.6)
+    pundit (2.2.0)
+      activesupport (>= 3.0.0)
     racc (1.6.0)
     rack (2.2.3.1)
     rack-test (1.1.0)
@@ -196,7 +197,6 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    riddle (2.4.3)
     rubocop (1.30.0)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
@@ -241,11 +241,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
-    thinking-sphinx (2.1.0)
-      activerecord (>= 3.0.3)
-      builder (>= 2.1.2)
-      innertube (~> 1.0.2)
-      riddle (>= 1.5.6)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -297,13 +292,13 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
+  pundit
   rails (~> 5.2.0)
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  thinking-sphinx
   toastr-rails
   turbolinks (~> 5)
   tzinfo-data
@@ -315,4 +310,4 @@ RUBY VERSION
    ruby 2.7.4p191
 
 BUNDLED WITH
-   2.3.9
+   2.3.20
