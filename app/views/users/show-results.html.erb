@@ -1,0 +1,22 @@
+<div class="box-center">
+  <% if users.count == 0 %>
+    <div class="row search-result">
+      No users found!
+    </div>
+  <% else %>
+    <% users.each do |user| %>
+      <% if users.count == 1 and user == current_user  %>
+          <div class="row search-result">
+            No users found!
+          </div>
+      <% else %>
+            <% if user != current_user %>
+                <div class="row search-result">
+                  <%= image_tag(user.avatar, class: "thumbnail-avatar") %>
+                  <%= link_to user.fullname, user_path(user.id), class: "btn post-username" %>
+                </div>
+            <% end %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

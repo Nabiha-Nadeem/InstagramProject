@@ -1,3 +1,4 @@
+@import "shared-variables";
 .fa-circle-plus{
   background-color: white;
   margin: 0;
@@ -9,7 +10,7 @@
   padding: 0;
   margin: 50px auto;
   width: 451px;
-  border: #e6e6e6 solid 1px;
+  border: $border-color solid 1px;
   overflow-x: auto;
 }
 
@@ -20,7 +21,7 @@
 .story-box{
   width: 500px;
   margin: 55px 250px;
-  border: #e6e6e6 1px solid;
+  border: $border-color 1px solid;
 }
 
 .story-body{

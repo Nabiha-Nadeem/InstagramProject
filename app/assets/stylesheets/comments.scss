@@ -1,0 +1,27 @@
+// Place all the styles related to the comments controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "shared-variables";
+
+.comment-col{
+  width: 87%;
+}
+
+.options-comment{
+  text-align: right;
+  width: 13%;
+}
+
+.post-comment{
+  width: 90%;
+  border: 1px solid $border-color;
+}
+
+.submit-comment{
+  padding: 0 !important;
+  margin-left: 2px !important;
+  background-color: white;
+  font-weight: bold !important;
+  color: #5757ff;
+}
