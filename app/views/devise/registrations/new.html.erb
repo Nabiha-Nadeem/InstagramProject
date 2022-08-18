@@ -1,37 +1,94 @@
-<h2>Sign up</h2>
+<!-- Sign up page -->
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="main-form">
+  <div class="container">
+    <div class="row">
 
-  <div class="field">
-    <% if resource.avatar.attached? %>
-      <%= image_tag(resource.avatar) %>
-    <% else %>
-      <%= image_tag('default_avatar.jpg') %>
-    <% end %>
+      <!-- Rendering phone wth images carousel -->
+      <div class="col-lg-6 landing-left">
+        <%= render "devise/shared/index-phone" %>
+      </div>
+      <!-- Rendering phone wth images carousel -->
+
+      <!-- Form column of the page -->
+      <div class="col-lg-6 landing-right text-center d-flex align-items-center">
+        <div class="form-login">
+
+          <!-- Sign up form -->
+          <div class="box">
+
+            <!-- Logo -->
+            <h3>
+              <%= image_tag "logo.png", :class => "brand-name-img"%>
+            </h3>
+            <!-- Logo -->
+
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= render "shared/devise-messages"%>
+
+              <!-- Message to display -->
+              <h6>
+                <strong> Sign up to see photos and videos from your friends. </strong>
+              </h6>
+              <!-- Message to display -->
+
+              <br>
+
+
+              <!--  <div class="field">-->
+              <%# if resource.avatar.attached? %>
+              <%#= image_tag(resource.avatar) %>
+              <%# else %>
+              <%#= image_tag('default_avatar.jpg') %>
+              <%# end %>
+              <!--  </div>-->
+
+              <!-- Form fields -->
+              <div class="form-group">
+                <%= f.text_field :fullname, autofocus: true, placeholder: "Full Name", class: "form-control"%>
+              </div>
+
+              <div class="form-group">
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email", class: "form-control"%>
+              </div>
+
+              <div class="form-group">
+                <%= f.password_field :password, autocomplete: "new-password", placeholder: "Password", class: "form-control" %>
+              </div>
+
+              <div class="form-group">
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Password confirmation", class: "form-control" %>
+              </div>
+              <!-- Form fields -->
+
+              <!-- Information to display -->
+              <p>People who use our service may have uploaded your contact information to Instagram. <strong>
+                Learn More </strong> <br> <br>
+                By signing up, you agree to our <strong> Terms , Data Policy </strong> and <strong>
+                Cookies Policy. </strong> </p>
+              <!-- Information to display -->
+
+              <!-- Sign up button -->
+              <div class="actions">
+                <%= f.submit "Sign up", class: "btn btn-primary" %>
+              </div>
+              <!-- Sign up button -->
+
+            <% end %>
+          </div>
+          <!-- Sign up form -->
+
+          <!-- Additional links to display -->
+          <div class="redirect-links box">
+            <%= render "devise/shared/links" %>
+          </div>
+          <!-- Additional links to display -->
+
+        </div>
+      </div>
+      <!-- Form column of the page -->
+
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
+<!-- Sign up page -->
