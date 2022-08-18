@@ -1,25 +1,3 @@
-<div class="add-story-box">
-  <button class="btn fa-solid fa-circle-plus" data-toggle="modal" data-target="#addStoryModal"></button>
-  <% @stories.each do |story| %>
-    <%= link_to image_tag(story.user.avatar_thumbnail, class: "thumbnail-avatar"),  class: "btn" %>
-  <% end %>
-</div>
-
-
-<div class="modal fade" id="addStoryModal" tabindex="-1" role="dialog" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="list-group text-center customModal">
-        <div class="modal-box">
-          <%= form_for @story, :html => {:multipart => true} do |f| %>
-            <%= file_field_tag "image", type: :file %>
-            <%= f.submit "Submit", class: "btn" %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+<%= render 'stories/stories-box' %>
 <%= render 'posts/add-post' %>
-<%= render 'posts/show-posts' %>
+<%= render 'posts/show-all-posts' %>
