@@ -3,10 +3,10 @@
 # app/models/user.rb
 # controller to manage users
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: :show
+  before_action :authenticate_user!, except: :index
+  before_action :find_user, only: :show
 
   def show
-    @user = User.find(params[:id])
     @posts = @user.posts
   end
 
@@ -18,29 +18,18 @@ class UsersController < ApplicationController
     @post_new = Post.new
   end
 
-  def follow_user
-    user_id = params[:format]
-    @follow = current_user.follows.create(following_id: user_id)
-    if @follow.save
-      redirect_to user_path(user_id)
-      (flash[:notice] = 'Followed!')
-    else
-      (flash[:alert] = 'An unexpected error occurred!')
-      redirect_to users_path
-    end
+  def search
+    @users = User.search_like_any([:fullname], params[:search])
+    render template: 'users/show-results', locals: { users: @users }
   end
 
-  def unfollow_user
-    user_id = params[:format]
-    follow_id = Follow.find_by(user_id: current_user.id, following_id: user_id )
-    # @unfollow = current_user.follows.delete(follow_id)
-    if current_user.follows.delete(follow_id)
-      redirect_to user_path(user_id)
-      (flash[:notice] = 'Unfollowed!')
-    else
-      (flash[:alert] = 'An unexpected error occurred!')
-      redirect_to users_path
-    end
-  end
+  private
 
+  def find_user
+    @user = User.find_by(id: params[:id])
+    return if @user
+
+    flash[:alert] = 'User not found!'
+    redirect_to root_path
+  end
 end

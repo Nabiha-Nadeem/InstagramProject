@@ -1,4 +1,4 @@
-<% if current_user.following.include?(@post.user) or @post.user == current_user %>
+<% if current_user.following.include?(@post.user) or @post.user == current_user or !(@post.user.is_private?) %>
   <%= render 'posts/show-post', post: @post %>
 <% else %>
   <div class="private-account-msg text-center">

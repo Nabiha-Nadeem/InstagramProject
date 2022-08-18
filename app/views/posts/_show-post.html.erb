@@ -3,7 +3,7 @@
     <div class="row">
 
       <div class="two-columns">
-        <%= image_tag(post.user.avatar_thumbnail, class: "thumbnail-avatar") %>
+        <%= image_tag(post.user.avatar, class: "thumbnail-avatar") %>
         <%= link_to post.user.fullname, user_path(post.user.id), class: "btn post-username" %>
       </div>
       <% if post.user == current_user %>
@@ -47,19 +47,16 @@
   <% end %>
 
   <div class="post-content">
-    <%= link_to post_likes_path(post), method: :post, class: "react-btn-post" do %>
+    <%= link_to post_likes_path(post), method: :post, remote: true, class: "react-btn-post" do %>
       <i class="fa-solid fa-heart"></i>
     <% end %>
     <%= link_to post_path(post), class: "react-btn-post" do %>
       <i class="fa-solid fa-comment"></i>
     <% end %>
 
-    <% if post.likes.count > 0 %>
-      <br>
-      <span><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></span>
-    <% end %>
-
-    <br>
+    <div id="like-post-<%= post.id.to_s %>">
+      <%= render "likes/like", post: post %>
+    </div>
 
     <%= link_to post.user.fullname, user_path(post.user.id), class: "btn post-username" %>
     <%= post.content %>
@@ -67,8 +64,13 @@
     <a class="post-time"><%= time_ago_in_words(post.created_at).upcase + " AGO"%></a>
 
 
-    <%= render post.comments, post: post %>
-    <%= render "comments/form", post: post %>
+    <div id="comment-post-<%= post.id.to_s %>">
+      <%= render post.comments, post: post %>
+    </div>
+
+    <div id="comment-form-post-<%= post.id.to_s %>">
+      <%= render 'comments/form', post: post %>
+    </div>
 
   </div>
   </div>

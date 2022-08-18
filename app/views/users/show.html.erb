@@ -1,6 +1,6 @@
 <div class="row justify-content-md-center profile-wrapper">
   <div class="col-md-4 text-center">
-    <%= image_tag @user.avatar_thumbnail, class: "round-image" %>
+    <%= image_tag @user.avatar, class: "round-image" %>
   </div>
   <div class="col-md-8">
     <div class="row">
@@ -10,9 +10,22 @@
         <button class="btn fa-solid fa-gear setting-btn" data-toggle="modal" data-target="#editPageModal"></button>
       <% else %>
         <% if current_user.following.include?(@user) %>
-          <%= button_to "Unfollow", unfollow_user_path(@user),method: :delete, class: "btn edit-profile-btn" %>
+          <%= button_to "Unfollow", follow_path(id: @user.id),method: :delete, class: "btn edit-profile-btn" %>
         <% else %>
-          <%= button_to "Follow", follow_user_path(@user), class: "btn edit-profile-btn" %>
+          <% if current_user.sending.include?(@user) %>
+            <%= button_to "Pending Request", request_path(@user.id),
+                          data: { confirm: "Are you sure? You will have to request the user again to follow!" },
+                          class: "btn edit-profile-btn", method: :delete %>
+          <% else %>
+            <% if @user.is_private? %>
+              <%= form_tag requests_path, method: :post %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= hidden_field_tag :following_id, @user.id %>
+              <%= submit_tag "Follow", class: "btn edit-profile-btn" %>
+            <% else %>
+              <%= button_to "Follow", follows_path(id: @user.id), class: "btn edit-profile-btn" %>
+            <% end %>
+          <% end %>
         <% end %>
       <% end %>
 
@@ -66,10 +79,17 @@
     <% if current_user.following.include?(@user) %>
       <%= render 'posts/profile-posts' %>
     <% else %>
-      <div class="private-account-msg text-center">
-        <strong><p> Account is private! </p></strong>
-        <p> Follow the user to see their posts! </p>
-      </div>
+      <% if current_user.sending.include?(@user) %>
+        <div class="private-account-msg text-center">
+          <strong><p> Account is private! </p></strong>
+          <p> Pending follow request! </p>
+        </div>
+      <% else %>
+        <div class="private-account-msg text-center">
+          <strong><p> Account is private! </p></strong>
+          <p> Follow the user to see their posts! </p>
+        </div>
+      <% end %>
     <% end %>
   <% else %>
     <%= render 'posts/profile-posts' %>
