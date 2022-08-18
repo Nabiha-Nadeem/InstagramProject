@@ -11,9 +11,13 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Search box -->
-    <form class="form-inline my-2 my-lg-0 ml-md-auto">
-      <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">
-    </form>
+    <%#= form_tag search_user_path, method:   class="form-inline my-2 my-lg-0 ml-md-auto">%>
+<!--      <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">-->
+<!--    </form_tag>-->
+    <%= form_tag search_user_path, :method => "post", class: "search-form" do %>
+      <%= text_field_tag :search, params[:search] , placeholder: "Search"%>
+      <%= submit_tag "Search" %>
+    <% end %>
     <!-- Search box -->
 
 
@@ -26,10 +30,17 @@
       </li>
       <!-- Home page -->
 
+      <!-- Follow Requests -->
+      <li class="nav-item active">
+        <%= link_to requests_path do %>
+          <i class="fa-solid fa-bell nav-link active"></i>
+        <% end %>
+      </li>
+      <!-- Follow Requests -->
 
       <!-- Profile -->
       <li class="nav-item active">
-        <%= link_to image_tag(current_user.avatar_thumbnail, class: "navbar-image"), user_path(current_user), class: "nav-link"  %>
+        <%= link_to image_tag(current_user.avatar, class: "navbar-image"), user_path(current_user), class: "nav-link"  %>
       </li>
       <!-- Profile -->
 
