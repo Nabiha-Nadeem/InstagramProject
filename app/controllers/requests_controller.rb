@@ -31,11 +31,7 @@ class RequestsController < ApplicationController
     redirect_to users_path
   end
 
-  def remove_request(request_id)
-    flash[:alert] = 'An unexpected error occurred!' unless Request.delete(request_id)
-  end
-
-  def remove_follow_request
+  def destroy
     user_id = params[:id]
     request_id = Request.find_by(user_id: current_user.id, following_id: user_id)
     if current_user.requests.delete(request_id)
@@ -63,5 +59,9 @@ class RequestsController < ApplicationController
 
     flash[:alert] = 'Request not found!'
     redirect_to root_path
+  end
+
+  def remove_request(request_id)
+    flash[:alert] = 'An unexpected error occurred!' unless Request.delete(request_id)
   end
 end

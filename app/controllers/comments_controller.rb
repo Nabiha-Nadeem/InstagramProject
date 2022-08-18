@@ -9,6 +9,7 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.create(comment_params.merge({ user_id: current_user.id }))
+    authorize @comment
     if @comment.body.blank?
       flash[:alert] = 'Cannot add empty comment!'
       redirect_to @post
