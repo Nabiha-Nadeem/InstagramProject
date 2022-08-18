@@ -1,0 +1,90 @@
+@import "shared-variables";
+.fa-circle-plus{
+  background-color: white;
+  margin: 0;
+  padding: 0;
+  font-size: 40px !important;
+  color: #5e5e5e;
+}
+.add-story-box{
+  padding: 0;
+  margin: 50px auto;
+  width: 451px;
+  border: $border-color solid 1px;
+  overflow-x: auto;
+}
+
+.story-page{
+  background-color: black;
+}
+
+.story-box{
+  width: 500px;
+  margin: 55px 250px;
+  border: $border-color 1px solid;
+}
+
+.story-body{
+  background-color: black !important;
+  color: white !important;
+
+  .row{
+    margin: auto;
+  }
+}
+.story-avatar{
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+.story-username{
+  color: white;
+  margin: 0 !important;
+  padding: 0 !important;
+  -webkit-text-stroke: 0.5px black;
+}
+.story-header{
+  position: absolute;
+  width: 451px;
+  margin: 20px;
+  z-index: 100;
+}
+
+.story-options{
+  text-align: right;
+  width: available;
+  margin-top: 50px;
+}
+.fa-xmark{
+  color: white;
+  font-size: 35px;
+}
+.story-column{
+  width: fit-content;
+}
+.story-container{
+  margin: auto;
+  display: flex;
+}
+.story-time{
+  color: white !important;
+  -webkit-text-stroke: 0.5px black;
+  font-size: 10px !important;
+  position: absolute;
+  margin-top: 55px;
+  margin-left: 75px;
+  z-index: 100;
+}
+
+.story-btn{
+  color: white;
+  z-index: 300;
+}
+.delete-story{
+  padding: 8px;
+  position: absolute;
+  margin-left: 450px;
+  margin-top: 20px;
+  z-index: 200;
+  -webkit-text-stroke: 0.5px black;
+}

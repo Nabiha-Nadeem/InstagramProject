@@ -1,0 +1,5 @@
+<% @posts.each do |post| %>
+  <% if current_user.following.include?(post.user) or post.user == current_user %>
+    <%= render 'posts/show-post', post: post %>
+  <% end %>
+<% end %>

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -17,8 +19,12 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'bootstrap', '~> 4.0.0'
+gem 'carrierwave', '~> 1.0'
+gem 'cloudinary'
 gem 'devise'
 gem 'jquery-rails'
+gem 'pundit'
+gem 'whenever'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

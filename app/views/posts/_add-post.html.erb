@@ -1,0 +1,22 @@
+<div class="add-post-box">
+  <button class="btn add-post" data-toggle="modal" data-target="#addPostModal">Create a post</button>
+</div>
+
+<div class="modal fade" id="addPostModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="list-group text-center customModal">
+        <div class="modal-box">
+          <%= form_for @post_new, :html => {:multipart => true} do |f| %>
+            <%= f.label :content, class: "control-label" %>
+            <%= f.text_field :content, class: "text_field" %>
+            <br>
+            <br>
+            <%= file_field_tag "images[]", type: :file, multiple: true %>
+            <%= f.submit "Submit", class: "btn" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

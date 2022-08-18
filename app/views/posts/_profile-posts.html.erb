@@ -1,0 +1,7 @@
+<div class="posts">
+  <% @posts.each do |post| %>
+    <div class="posts-column">
+      <%= link_to image_tag(post.photos.first.image.url(:thumbnail)), post_path(post) %>
+    </div>
+  <% end %>
+</div>
