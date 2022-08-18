@@ -3,14 +3,16 @@
     <%= link_to comment.user.fullname, user_path(comment.user.id), class: "btn post-username" %>
     <%= comment.body %>
   </div>
-  <% if comment.user == current_user %>
+  <% if comment.user == current_user or post.user == current_user %>
     <div class="comment-col options-comment">
-      <%= link_to post_comment_path(post, comment), data: { confirm: "Delete this post?" },
-                  method: :delete, class: "homepage-post-btn" do %>
-        <i class="fa-solid fa-trash"></i>
+      <% if comment.user == current_user %>
+        <%= link_to edit_post_comment_path(post, comment), method: :get, class: "homepage-post-btn" do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
       <% end %>
-      <%= link_to edit_post_comment_path(post, comment), method: :get, class: "homepage-post-btn" do %>
-        <i class="fa-solid fa-pen-to-square"></i>
+      <%= link_to post_comment_path(post, comment), data: { confirm: "Delete this Comment?" },
+                  method: :delete, class: "homepage-post-btn", remote: true do %>
+        <i class="fa-solid fa-trash"></i>
       <% end %>
     </div>
   <% end %>

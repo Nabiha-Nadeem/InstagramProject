@@ -2,46 +2,39 @@
 
 # controller to manage comments
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_post, only: %i[edit create destroy update]
   before_action :find_comment, only: %i[edit destroy update]
+  after_action :verify_authorized, only: %i[edit destroy update]
 
   def create
-    @comment = @post.comments.create(comment_params)
-    @comment.user_id = current_user.id
-    redirect_to @post
-    if @comment.save
-      flash[:notice] = 'Commented!'
-    else
-      flash[:alert] = 'Error occurred while adding the comment!'
+    @comment = @post.comments.create(comment_params.merge({ user_id: current_user.id }))
+    authorize @comment
+    if @comment.body.blank?
+      flash[:alert] = 'Cannot add empty comment!'
+      redirect_to @post
+    elsif @comment.save
+      respond_to :js
     end
   end
 
-  def edit; end
+  def edit
+    authorize @comment
+  end
 
   def update
+    authorize @comment
     redirect_to @post
-    if @comment.user_id == current_user.id
-      if @comment.update(comment_params)
-        flash[:notice] = 'Comment updated!'
-      else
-        flash[:alert] = 'Error occurred while updating the comment!'
-      end
+    if @comment.update(comment_params)
+      flash[:notice] = 'Comment updated!'
     else
-      flash[:alert] = "You can't update someone else's comment!"
+      flash[:alert] = 'Error occurred while updating the comment!'
     end
   end
 
   def destroy
-    redirect_to @post
-    if @comment.user_id == current_user.id
-      if @comment.destroy
-        flash[:notice] = 'Comment deleted!'
-      else
-        flash[:alert] = 'Error occurred while deleting the comment!'
-      end
-    else
-      flash[:alert] = "You can't delete someone else's comment!"
-    end
+    authorize @comment
+    respond_to :js if @comment.destroy
   end
 
   private
@@ -51,18 +44,27 @@ class CommentsController < ApplicationController
   end
 
   def find_post
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(id: params[:post_id])
     return if @post
 
-    flash[:danger] = 'Post not found!'
+    flash[:alert] = 'Post not found!'
     redirect_to root_path
   end
 
   def find_comment
-    @comment = Comment.find(params[:id])
+    @comment = Comment.find_by(id: params[:id])
     return if @comment
 
-    flash[:danger] = 'Comment not found!'
+    flash[:alert] = 'Comment not found!'
     redirect_to root_path
+  end
+
+  def save_comment
+    if @comment.save
+      flash[:notice] = 'Commented!'
+    else
+      flash[:alert] = 'Error occurred while adding the comment!'
+    end
+    redirect_to @post
   end
 end
