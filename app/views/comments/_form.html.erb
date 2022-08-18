@@ -1,0 +1,6 @@
+<%= form_with model: [post, post.comments.build ], remote:true do |f| %>
+  <%= f.text_field :body, placeholder: "Add a comment...", class: "text_field post-comment",
+                   autocomplete: :off, required: true, pattern: "^[^-\s][a-zA-Z0-9_\s-]+$",
+                   title: "First character can not be a space!"%>
+  <%= f.submit "Post", class: "btn submit-comment" %>
+<% end %>
