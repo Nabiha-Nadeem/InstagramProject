@@ -7,7 +7,7 @@
 
 
           <div class="form-group">
-            <%= image_tag(current_user.avatar_thumbnail, class: "image-edit") %>
+            <%= image_tag(current_user.avatar, class: "image-edit") %>
             <a class="form-fullname"><%= current_user.fullname %></a>
           </div>
 
@@ -43,6 +43,11 @@
           <div class="form-group">
             <span class="form-header"> Old Password </span>
             <%= f.password_field :current_password, autocomplete: "current-password", class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <span class="form-header"> Private Account? </span>
+            <%= f.check_box :is_private, autocomplete: "is_private" %>
           </div>
 
           <div class="actions">
