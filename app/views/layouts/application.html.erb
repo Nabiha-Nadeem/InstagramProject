@@ -1,15 +1,39 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>InstagramProject</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>InstagramClone</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script src="https://kit.fontawesome.com/c6b525c301.js" crossorigin="anonymous"></script>
+</head>
 
-  <body>
-    <%= yield %>
-  </body>
+<body>
+
+<% unless controller_name == "stories" %>
+<%= render 'shared/navbar' if current_user %>
+<% end %>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+</body>
+
+<% unless controller_name == "stories" %>
+  <%= render 'shared/footer' %>
+<% end %>
+
+<!--For toastr notifications -->
+<% if flash.any? %>
+  <script type="text/javascript">
+    <% flash.each do |key, value| %>
+    <% type = key.to_s.gsub('alert', 'error').gsub('notice', 'success')%>
+    toastr.<%= type %>('<%= value %>')
+    <% end %>
+  </script>
+<% end %>
+<!--For toastr notifications -->
 </html>
