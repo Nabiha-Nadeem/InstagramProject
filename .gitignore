@@ -21,4 +21,6 @@
 
 # Ignore .idea folder
 /.idea/*
+
+# Ignore coverage folder
 /coverage/*
