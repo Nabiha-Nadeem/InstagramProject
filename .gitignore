@@ -20,5 +20,5 @@
 /config/master.key
 
 # Ignore .idea folder
-/.idea/*coverage
-coverage
+/.idea/*
+/coverage/*
