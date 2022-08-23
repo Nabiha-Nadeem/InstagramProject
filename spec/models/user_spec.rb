@@ -10,13 +10,14 @@ RSpec.describe User, type: :model do
   context 'validations' do
     it { should validate_presence_of(:fullname) }
     it { should validate_presence_of(:email) }
-    it { should validate_uniqueness_of(:email).ignoring_case_sensitivity }
+    it { should validate_uniqueness_of(:email).ignoring_case_sensitivity}
     it { should validate_inclusion_of(:is_private).in?([true, false]) }
     it { should allow_value('Nabiha Nadeem', 'Dr. Susana Mayer', "Ossie O'Reilley IV").for(:fullname) }
     it { should allow_value('anna@gmail.com', 'noah@example.com', 'an11@domain.com').for(:email) }
     it { should_not allow_value('Nabiha 112n', '11921 11', '1 hea').for(:fullname) }
     it { should_not allow_value('@domain.com', '@exa', 'be@', '1121.com').for(:email) }
     it { should_not validate_presence_of(:bio) }
+
   end
 
   context 'associations' do

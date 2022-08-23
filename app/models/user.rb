@@ -31,7 +31,7 @@ class User < ApplicationRecord
   validates :fullname, presence: true, length: { maximum: 50 }
   validates :is_private, inclusion: { in: [true, false] }
   validates :email, presence: true, uniqueness: true, length: { maximum: 50 }
-  validates_format_of :fullname, with: /\A[a-zA-Z.']+(?: [a-zA-Z.']+){0,2}\z/
+  validates_format_of :fullname, with: /\A[a-zA-Z.']+(?: [a-zA-Z.']+){0,4}\z/
 
   has_one_attached :avatar
   after_commit :add_default_avatar, on: %i[create update]

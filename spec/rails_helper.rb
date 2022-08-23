@@ -1,10 +1,15 @@
 # frozen_string_literal: true
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
+require 'simplecov'
+SimpleCov.start do
+  add_filter '/app/'
+  add_filter '/lib/'
+  add_filter '/config/'
+end
 require 'spec_helper'
 require 'shoulda-matchers'
 require 'support/factory_bot'
-require 'support/chrome'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 # Prevent database truncation if the environment is production
