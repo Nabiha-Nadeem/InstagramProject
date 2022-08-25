@@ -11,9 +11,9 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:fullname) }
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email).ignoring_case_sensitivity}
-    it { should validate_inclusion_of(:is_private).in?([true, false]) }
+    it { expect(:is_private).to_not eql(nil)}
     it { should_not validate_presence_of(:bio) }
-    it { should expect(:fullname).to match(/\A[a-zA-Z.']+(?: [a-zA-Z.']+){0,4}\z/)}
+    it { expect(:fullname).to match(/\A[a-zA-Z.']+(?: [a-zA-Z.']+){0,4}\z/)}
   end
 
   context 'associations' do
