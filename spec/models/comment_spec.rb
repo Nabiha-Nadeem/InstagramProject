@@ -7,8 +7,6 @@ RSpec.describe Comment, type: :model do
     it { should validate_presence_of(:user_id) }
     it { should validate_presence_of(:post_id) }
     it { should validate_presence_of(:body) }
-    it { should allow_value('hey guys', 'nice', 'woah! what a display!').for(:body) }
-    it { should_not allow_value('      ').for(:body) }
   end
 
   context 'associations' do
