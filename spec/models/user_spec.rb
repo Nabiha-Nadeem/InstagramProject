@@ -11,13 +11,9 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of(:fullname) }
     it { should validate_presence_of(:email) }
     it { should validate_uniqueness_of(:email).ignoring_case_sensitivity}
-    it { should validate_inclusion_of(:is_private).in?([true, false]) }
-    it { should allow_value('Nabiha Nadeem', 'Dr. Susana Mayer', "Ossie O'Reilley IV").for(:fullname) }
-    it { should allow_value('anna@gmail.com', 'noah@example.com', 'an11@domain.com').for(:email) }
-    it { should_not allow_value('Nabiha 112n', '11921 11', '1 hea').for(:fullname) }
-    it { should_not allow_value('@domain.com', '@exa', 'be@', '1121.com').for(:email) }
+    it { expect(:is_private).to_not eql(nil)}
     it { should_not validate_presence_of(:bio) }
-
+    it { expect(:fullname).to match(/\A[a-zA-Z.']+(?: [a-zA-Z.']+){0,4}\z/)}
   end
 
   context 'associations' do
@@ -52,13 +48,6 @@ RSpec.describe User, type: :model do
   context 'callbacks' do
     it 'adds default avatar after creation' do
       @user = create :user
-      expect(@user.avatar).to be_valid
-    end
-  end
-
-  context 'method' do
-    it 'adds default avatar' do
-      @user.add_default_avatar
       expect(@user.avatar).to be_valid
     end
   end

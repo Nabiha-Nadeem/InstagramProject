@@ -62,8 +62,8 @@ class PostsController < ApplicationController
       save_photos_safely
     else
       (flash[:alert] = 'An unexpected error occurred!')
+      redirect_to users_path
     end
-    redirect_to users_path
   end
 
   def save_photos_safely
@@ -71,6 +71,7 @@ class PostsController < ApplicationController
       @post.photos.create(image: img)
     end
     (flash[:notice] = 'Saved!')
+    redirect_to users_path
   rescue StandardError
     redirect_to users_path
     (flash[:alert] = 'Please add an image')
