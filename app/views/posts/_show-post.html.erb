@@ -54,8 +54,8 @@
       <i class="fa-solid fa-comment"></i>
     <% end %>
 
-    <div id="like-post-<%= post.id.to_s %>">
-      <%= render "likes/like", post: post %>
+    <div id="like-Post-<%= post.id.to_s %>">
+      <%= render "likes/like", parent: post %>
     </div>
 
     <%= link_to post.user.fullname, user_path(post.user.id), class: "btn post-username" %>

@@ -14,6 +14,20 @@
                   method: :delete, class: "homepage-post-btn", remote: true do %>
         <i class="fa-solid fa-trash"></i>
       <% end %>
+      <%= link_to comment_likes_path(comment), method: :post, remote: true, class: "homepage-post-btn" do %>
+        <i class="fa-solid fa-heart"></i>
+      <% end %>
     </div>
   <% end %>
+  <a class="comment-time">
+    <% comment_time = time_ago_in_words(comment.created_at)  %>
+    <% if comment_time == 'less than a minute' %>
+      <%= 'Just now'%>
+    <% else %>
+      <%= comment_time %>
+    <% end %>
+  </a>
+  <div id="like-Comment-<%= comment.id.to_s %>" class="likes-comment">
+    <%= render "likes/like", parent: comment %>
+  </div>
 </div>
