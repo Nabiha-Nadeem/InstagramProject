@@ -12,11 +12,14 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[show create update destroy edit] do
     resources :comments, only: %i[edit create destroy update]
-    resources :likes, only: %i[create destroy]
     resources :photos, only: [:create]
   end
 
   resources :stories, only: %i[show create destroy] do
     resource :photos, only: [:create]
+  end
+
+  resources :posts, :comments do
+    resources :likes, only: %i[create destroy]
   end
 end

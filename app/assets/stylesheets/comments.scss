@@ -5,12 +5,12 @@
 @import "shared-variables";
 
 .comment-col{
-  width: 87%;
+  width: 83%;
 }
 
 .options-comment{
   text-align: right;
-  width: 13%;
+  width: 17%;
 }
 
 .post-comment{
@@ -24,4 +24,16 @@
   background-color: white;
   font-weight: bold !important;
   color: #5757ff;
+}
+
+.likes-comment{
+  color: #666666;
+  font-size: 12px;
+  width: 20%;
+}
+
+.comment-time{
+  color: #666666 !important;
+  font-size: 12px;
+  width: 20%;
 }
