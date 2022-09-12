@@ -38,6 +38,14 @@
       </li>
       <!-- Follow Requests -->
 
+      <!-- Owned Pages -->
+      <li class="nav-item active">
+        <%= link_to pages_path do %>
+          <i class="fa-solid fa-file-lines nav-link active"></i>
+        <% end %>
+      </li>
+      <!-- Owned Pages -->
+
       <!-- Profile -->
       <li class="nav-item active">
         <%= link_to image_tag(current_user.avatar, class: "navbar-image"), user_path(current_user), class: "nav-link"  %>

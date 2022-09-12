@@ -15,7 +15,6 @@ class User < ApplicationRecord
   has_many :following_relationships, foreign_key: :user_id, class_name: 'Follow'
   has_many :following, through: :following_relationships
 
-
   has_many :requests, dependent: :destroy
   has_many :sender_relationships, foreign_key: :following_id, class_name: 'Request'
   has_many :senders, through: :sender_relationships
@@ -31,11 +30,30 @@ class User < ApplicationRecord
 
   validates :fullname, presence: true, length: { maximum: 50 }
   validates :is_private, inclusion: { in: [true, false] }
-  validates :email, presence: true, uniqueness: true, length: { maximum: 50 }
   validates_format_of :fullname, with: /\A[a-zA-Z.']+(?: [a-zA-Z.']+){0,4}\z/
 
   has_one_attached :avatar
   after_commit :add_default_avatar, on: %i[create update]
+
+  def page?
+    type == 'Page'
+  end
+
+  def account?
+    type == 'Account'
+  end
+
+  def email_required?
+    true unless page?
+  end
+
+  def password_required?
+    true unless page? || password.nil?
+  end
+
+  def user_role(page_id)
+    UserPageRelationship.find_by(user_id: id, page_id: page_id ).role
+  end
 
   def add_default_avatar
     return if avatar.attached?

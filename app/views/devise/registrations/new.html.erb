@@ -1,5 +1,4 @@
 <!-- Sign up page -->
-
 <div class="main-form">
   <div class="container">
     <div class="row">
@@ -34,15 +33,6 @@
 
               <br>
 
-
-              <!--  <div class="field">-->
-              <%# if resource.avatar.attached? %>
-              <%#= image_tag(resource.avatar) %>
-              <%# else %>
-              <%#= image_tag('default_avatar.jpg') %>
-              <%# end %>
-              <!--  </div>-->
-
               <!-- Form fields -->
               <div class="form-group">
                 <%= f.text_field :fullname, autofocus: true, placeholder: "Full Name", class: "form-control"%>
@@ -61,6 +51,7 @@
               </div>
               <div class="field">
                 <%= f.hidden_field :is_private, value: false %>
+                <%= f.hidden_field :type, value: 'Account' %>
               </div>
 
               <!-- Form fields -->

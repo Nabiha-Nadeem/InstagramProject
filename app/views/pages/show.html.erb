@@ -1,0 +1,31 @@
+<%= render 'pages/assigned-roles' %>
+
+<div class="main-form">
+  <div class="container">
+    <div class="add-role">
+      <%= form_for :relation, url: relationships_url do |f| %>
+        <h5>
+          <strong> Add a new role </strong>
+        </h5>
+
+        <div class="form-group">
+          <span class="form-header"> Email of user </span>
+          <%= f.text_field :email, class: "form-control"%>
+        </div>
+
+        <div class="form-group">
+          <span class="form-header"> Role </span>
+          <%= f.select :role, %w[admin editor]%>
+        </div>
+
+        <div class="field">
+          <%= f.hidden_field :id, value: @page.id %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Add Role", class: "btn btn-primary" %>
+        </div>
+      <% end  %>
+    </div>
+  </div>
+</div>

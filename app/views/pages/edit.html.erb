@@ -1,0 +1,41 @@
+<div class="main-form">
+  <div class="container">
+    <div class="text-left">
+      <div class="box-center">
+        <%= form_for :page, { :url => page_path, :method => :patch } do |f| %>
+          <div class="form-group">
+            <%= image_tag(@page.avatar, class: "image-edit") %>
+            <a class="form-fullname"><%= @page.fullname %></a>
+          </div>
+
+          <div class="form-group">
+            <span class="form-header"> Change Page Photo </span>
+            <%= f.file_field :avatar, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <span class="form-header"> Name </span>
+            <%= f.text_field :fullname, autofocus: true, autocomplete: "Name", class: "form-control"%>
+          </div>
+
+          <div class="form-group">
+            <span class="form-header"> Bio </span>
+            <%= f.text_area :bio, autofocus: true, class: "form-control"%>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Update", class: "btn btn-primary" %>
+          </div>
+
+          <% if @page.user_role(current_user) == 'admin' %>
+            <span class="form-header del-acc"> Delete account?
+              <%= button_to "Delete Page", page_path(@page), data: { confirm: "Are you sure?" },
+                            method: :delete, class: "btn btn-primary" %>
+            </span>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

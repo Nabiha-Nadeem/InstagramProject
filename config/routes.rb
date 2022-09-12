@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :pages do
+    post 'add_role' => 'pages#add_role', as: :add_role
+  end
+  resources :relationships, only: %w[create destroy]
   root 'users#index'
   devise_for :users
 
@@ -12,11 +16,11 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[show create update destroy edit] do
     resources :comments, only: %i[edit create destroy update]
-    resources :photos, only: [:create]
+    resources :photos, only: [:new]
   end
 
   resources :stories, only: %i[show create destroy] do
-    resource :photos, only: [:create]
+    resource :photos, only: [:new]
   end
 
   resources :posts, :comments do

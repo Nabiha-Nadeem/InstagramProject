@@ -3,14 +3,12 @@
 # to handle likes
 class LikesController < ApplicationController
   before_action :authenticate_user!
-  # before_action :find_post
   def create
     @parent, @id, @name = parent
     if already_liked?(@parent, @name)
       flash[:alert] = 'You can like only once!'
       redirect_to post_path(@id)
     else
-      #@post.likes.create(user_id: current_user.id)
       @like = @parent.likes.create(user_id: current_user.id)
       respond_to :js
     end
@@ -18,13 +16,6 @@ class LikesController < ApplicationController
 
   private
 
-  # def find_post
-  #   @post = Post.find_by(id: params[:post_id])
-  #   return if @post
-
-  #   flash[:alert] = 'Post not found!'
-  #   redirect_to root_path
-  # end
   def parent
     if params[:post_id]
       parent_elem = Post.find params[:post_id]

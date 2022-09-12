@@ -6,7 +6,7 @@ class Photo < ApplicationRecord
 
   mount_uploader :image, PhotoUploader
 
-  validate :check_image, on: :create
+  validate :check_image, on: :new
 
   def check_image
     return if image.filename
