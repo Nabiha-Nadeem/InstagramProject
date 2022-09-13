@@ -11,9 +11,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <!-- Search box -->
-    <%#= form_tag search_user_path, method:   class="form-inline my-2 my-lg-0 ml-md-auto">%>
-<!--      <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search" aria-label="Search" aria-describedby="basic-addon1">-->
-<!--    </form_tag>-->
     <%= form_tag search_user_path, :method => "post", class: "search-form" do %>
       <%= text_field_tag :search, params[:search] , placeholder: "Search"%>
       <%= submit_tag "Search" %>

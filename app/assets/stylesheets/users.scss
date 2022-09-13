@@ -228,3 +228,16 @@
 .profile-width-setter{
   margin: 0 63px;
 }
+
+.premium-sign{
+  height: 28px;
+  line-height: 24px;
+  font-size: 28px;
+  margin: 0 0 0 50px;
+  padding: 0 0 0 0;
+  color:transparent;
+  background: linear-gradient(to right, #971ed4 0%, #f025d6 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color:transparent;
+}

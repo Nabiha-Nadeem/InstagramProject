@@ -34,16 +34,20 @@
         <% end %>
       <% end %>
 
+      <% if @user.subscribed? %>
+        <i class="fa-solid fa-circle-check premium-sign"></i>
+      <% end %>
       <!--Modal-->
       <div class="modal fade" id="editPageModal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="list-group text-center">
+              <%= link_to "Get Instagram Premium", new_subscription_path(:id => @user.id), class: "list-group-item list-group-item-action" %>
+              <%= link_to "Create a Page", new_page_path, class: "list-group-item list-group-item-action" %>
               <%= link_to "Change Password", edit_user_registration_path,
                           class: "list-group-item list-group-item-action" %>
               <%= link_to "Log Out", destroy_user_session_path, method: :delete,
                           class: "list-group-item list-group-item-action"%>
-              <%= link_to "Create a Page", new_page_path, class: "list-group-item list-group-item-action" %>
               <a href="#" class="list-group-item list-group-item-action" data-dismiss="modal">Cancel</a>
             </div>
           </div>

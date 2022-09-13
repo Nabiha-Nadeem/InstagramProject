@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :sending_relationships, foreign_key: :user_id, class_name: 'Request'
   has_many :sending, through: :sending_relationships
 
+  has_many :subscriptions, dependent: :destroy
+
   scope :with_stories, -> { where('EXISTS(SELECT * FROM stories WHERE user_id = users.id)') }
 
   # Include default devise modules. Others available are:

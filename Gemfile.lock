@@ -281,6 +281,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.8)
+    stripe (7.1.0)
     thor (1.2.1)
     thread_safe (0.3.6)
     tilt (2.0.11)
@@ -345,6 +346,7 @@ DEPENDENCIES
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
+  stripe
   toastr-rails
   turbolinks (~> 5)
   tzinfo-data
