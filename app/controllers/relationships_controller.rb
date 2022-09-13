@@ -8,9 +8,14 @@ class RelationshipsController < ApplicationController
 
   def create
     @account = Account.find_by email: params[:relation][:email]
-    @given_role = params[:relation][:role]
     @page = params[:relation][:id]
-    create_role(@account, @page, @given_role)
+    if @account
+      @given_role = params[:relation][:role]
+      create_role(@account, @page, @given_role)
+    else
+      flash[:alert] = 'Invalid email!'
+      redirect_to page_path(@page)
+    end
   end
 
   def destroy
@@ -30,7 +35,7 @@ class RelationshipsController < ApplicationController
     else
       save_role(account.id, page, given_role)
     end
-    redirect_to user_path(page)
+    redirect_to page_path(@page)
   end
 
   def find_rel

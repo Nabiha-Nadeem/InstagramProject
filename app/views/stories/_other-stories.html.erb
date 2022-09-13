@@ -1,0 +1,11 @@
+<% if @users_with_story %>
+  <% @users_with_story.each do |user| %>
+    <% if current_user.following.include?(user) or user == current_user %>
+      <%= link_to image_tag(user.avatar, class: "story-avatar"), story_path(user.id) ,class: "btn" %>
+    <% end %>
+  <% end %>
+<% else %>
+  <% if @stories.count > 0 %>
+    <%= link_to image_tag(@user.avatar, class: "story-avatar"), story_path(@user.id) ,class: "btn" %>
+  <% end %>
+<% end %>

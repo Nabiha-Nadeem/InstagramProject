@@ -85,6 +85,11 @@
   </div>
 </div>
 
+<div class="profile-width-setter">
+  <%= render 'stories/stories-box' %>
+  <%= render 'posts/add-post', user_id: @user.id %>
+</div>
+
 <div class="row">
   <% if @user.is_private? and @user != current_user %>
     <% if current_user.following.include?(@user) %>

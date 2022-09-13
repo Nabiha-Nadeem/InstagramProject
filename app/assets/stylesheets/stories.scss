@@ -9,7 +9,7 @@
 .add-story-box{
   padding: 0;
   margin: 50px auto;
-  width: 451px;
+  width: 100%;
   border: $border-color solid 1px;
   overflow-x: auto;
 }
@@ -38,10 +38,10 @@
   border-radius: 50%;
 }
 .story-username{
-  color: white;
+  color: white !important;
   margin: 0 !important;
   padding: 0 !important;
-  -webkit-text-stroke: 0.5px black;
+  -webkit-text-stroke: 0.2px black;
 }
 .story-header{
   position: absolute;
@@ -66,9 +66,16 @@
   margin: auto;
   display: flex;
 }
+.story-page-avatar{
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
 .story-time{
   color: white !important;
-  -webkit-text-stroke: 0.5px black;
+  -webkit-text-stroke: 0.2px black;
   font-size: 10px !important;
   position: absolute;
   margin-top: 55px;

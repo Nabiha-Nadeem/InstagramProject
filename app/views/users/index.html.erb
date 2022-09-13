@@ -1,3 +1,5 @@
-<%= render 'stories/stories-box' %>
-<%= render 'posts/add-post' %>
-<%= render 'posts/show-all-posts' %>
+<div class="width-setter">
+  <%= render 'stories/stories-box' %>
+  <%= render 'posts/add-post', user_id: current_user.id  %>
+  <%= render 'posts/show-all-posts' %>
+</div>
