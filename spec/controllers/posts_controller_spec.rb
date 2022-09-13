@@ -12,18 +12,18 @@ RSpec.describe PostsController, type: :controller do
 
   context 'Methods' do
     context 'Create Post' do
-      it 'should create post' do
+      it 'should new post' do
         expect { create :post }.to change(Post, :count).by(1)
         expect(response).to have_http_status(200)
       end
 
-      it 'should not create post without images' do
-        put :create, params: { id: post.id, post: { content: 'New post!' } }
+      it 'should not new post without images' do
+        put :new, params: { id: post.id, post: { content: 'New post!' } }
         expect(flash[:alert]).to eql('Please add images (at max 10)!')
         expect(response).to have_http_status(302)
       end
 
-      it 'should not create post without user_id' do
+      it 'should not new post without user_id' do
         expect { create(:post, user_id: nil) }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end

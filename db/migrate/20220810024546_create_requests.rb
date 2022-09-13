@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# to create a table for follow requests
+# to new a table for follow requests
 class CreateRequests < ActiveRecord::Migration[5.2]
   def change
     create_table :requests do |t|

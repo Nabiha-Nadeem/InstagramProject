@@ -1,27 +1,29 @@
-<% if @requests.count < 1 %>
-  <div class="row box-center text-center">
-    <span class="request-text">
-      No requests yet!
-    </span>
-  </div>
-<% else %>
-  <% @requests.each do |request| %>
-  <div class="row box-center text-center">
-    <%= image_tag(request.sender.avatar, class: "thumbnail-avatar") %>
-    <span class="request-text">
-      <%= request.sender.fullname  %>
-      has requested to follow you!
-    </span>
+<div class="info-box">
+  <% if @requests.count < 1 %>
+    <div class="row text-center">
+      <span class="request-text">
+        No requests yet!
+      </span>
+    </div>
+  <% else %>
+    <% @requests.each do |request| %>
+    <div class="row text-center">
+      <%= image_tag(request.sender.avatar, class: "thumbnail-avatar") %>
+      <span class="request-text">
+        <%= request.sender.fullname  %>
+        has requested to follow you!
+      </span>
 
-    <%= form_with model: request, method: :patch, local: true do |form| %>
-      <%= hidden_field_tag :is_accepted, true %>
-      <%= form.submit "Accept", class: "btn edit-profile-btn" %>
-    <% end %>
+      <%= form_with model: request, method: :patch, local: true do |form| %>
+        <%= hidden_field_tag :is_accepted, true %>
+        <%= form.submit "Accept", class: "btn edit-profile-btn" %>
+      <% end %>
 
-    <%= form_with model: request, method: :patch, local: true do |form| %>
-      <%= hidden_field_tag :is_accepted, false %>
-      <%= form.submit "Decline", class: "btn edit-profile-btn" %>
+      <%= form_with model: request, method: :patch, local: true do |form| %>
+        <%= hidden_field_tag :is_accepted, false %>
+        <%= form.submit "Decline", class: "btn edit-profile-btn" %>
+      <% end %>
+    </div>
     <% end %>
-  </div>
   <% end %>
-<% end %>
+</div>

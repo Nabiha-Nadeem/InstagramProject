@@ -6,7 +6,7 @@
         <%= image_tag(post.user.avatar, class: "thumbnail-avatar") %>
         <%= link_to post.user.fullname, user_path(post.user.id), class: "btn post-username" %>
       </div>
-      <% if post.user == current_user %>
+      <% if post.user == current_user or post.user.accounts.include?(current_user) %>
         <div class="two-columns edit-options">
           <%= link_to edit_post_path(post), method: :get, class: "homepage-post-btn" do %>
             <i class="fa-solid fa-pen-to-square"></i>

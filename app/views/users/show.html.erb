@@ -8,6 +8,11 @@
       <% if @user == current_user %>
         <%= link_to "Edit profile", edit_user_registration_path, class: "btn edit-profile-btn" %>
         <button class="btn fa-solid fa-gear setting-btn" data-toggle="modal" data-target="#editPageModal"></button>
+      <% elsif @user.page? and @user.accounts.include?(current_user) %>
+        <%= link_to "Edit page", edit_page_path, class: "btn edit-profile-btn" %>
+        <% if @user.user_role(current_user) == 'admin' %>
+          <%= link_to "Manage roles", page_path(@user), class: "btn edit-profile-btn" %>
+        <% end %>
       <% else %>
         <% if current_user.following.include?(@user) %>
           <%= button_to "Unfollow", follow_path(id: @user.id),method: :delete, class: "btn edit-profile-btn" %>
@@ -34,9 +39,11 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="list-group text-center">
-              <%= link_to "Change Password", edit_user_registration_path, class: "list-group-item list-group-item-action" %>
+              <%= link_to "Change Password", edit_user_registration_path,
+                          class: "list-group-item list-group-item-action" %>
               <%= link_to "Log Out", destroy_user_session_path, method: :delete,
                           class: "list-group-item list-group-item-action"%>
+              <%= link_to "Create a Page", new_page_path, class: "list-group-item list-group-item-action" %>
               <a href="#" class="list-group-item list-group-item-action" data-dismiss="modal">Cancel</a>
             </div>
           </div>
@@ -54,17 +61,23 @@
         <strong> <%= @user.followers.count %> </strong>
         <%= (@user.followers.count) == 1 ? 'Follower' : 'Followers'%>
       </span>
-      <span class="user-info">
-        <strong> <%= @user.following.count %> </strong>
-        <%= 'Following' %>
-      </span>
-      <br>
-      <br>
+      <% if @user.account? %>
+        <span class="user-info">
+          <strong> <%= @user.following.count %> </strong>
+          <%= 'Following' %>
+        </span>
+      <% end %>
     </div>
 
-    <div class="row">
-      <p class="email"><%= @user.email %></p>
+    <br>
+    <div>
+      <% if @user.email? %>
+        <div class="row">
+          <p class="email"><%= @user.email %></p>
+        </div>
+      <% end %>
     </div>
+
 
     <div class="row">
       <p class="bio"><%= @user.bio %></p>
@@ -72,9 +85,12 @@
   </div>
 </div>
 
+<div class="profile-width-setter">
+  <%= render 'stories/stories-box' %>
+  <%= render 'posts/add-post', user_id: @user.id %>
+</div>
 
 <div class="row">
-
   <% if @user.is_private? and @user != current_user %>
     <% if current_user.following.include?(@user) %>
       <%= render 'posts/profile-posts' %>
@@ -94,5 +110,4 @@
   <% else %>
     <%= render 'posts/profile-posts' %>
   <% end %>
-
 </div>

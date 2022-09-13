@@ -14,26 +14,26 @@ RSpec.describe CommentsController, type: :controller do
 
   context 'Methods' do
     context 'Create Comment' do
-      it 'should create comment' do
+      it 'should new comment' do
         expect { create :comment }.to change(Comment, :count).by(1)
         expect(response).to have_http_status(200)
       end
 
       it 'should alert for comment with empty body' do
-        put :create, params: { post_id: post.id, id: comment.id, comment: { body: ' ' } }
+        put :new, params: { post_id: post.id, id: comment.id, comment: { body: ' ' } }
         expect(flash[:alert]).to eql('Cannot add empty comment!')
         expect(response).to have_http_status(302)
       end
 
-      it 'should not create comment without body' do
+      it 'should not new comment without body' do
         expect { create(:comment, body: nil) }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
-      it 'should not create comment without post_id' do
+      it 'should not new comment without post_id' do
         expect { create(:comment, post_id: nil) }.to raise_error(ActiveRecord::RecordInvalid)
       end
 
-      it 'should not create comment without user_id' do
+      it 'should not new comment without user_id' do
         expect { create(:comment, user_id: nil) }.to raise_error(ActiveRecord::RecordInvalid)
       end
     end

@@ -1,0 +1,18 @@
+<div class="info-box">
+  <% @page.accounts.each do |account| %>
+    <div class="row">
+      <div class="info-col">
+        <%= image_tag(account.avatar, class: "thumbnail-avatar") %>
+        <%= link_to account.fullname, user_path(account), class: "btn post-username" %>
+      </div>
+
+      <div class="role">
+        <a class="role-text"><%= @page.user_role(account) %></a>
+        <%= link_to relationship_path(:id => @page.id, :account => account.id), data: { confirm: "Delete this post?" },
+                    method: :delete, class: "homepage-post-btn" do %>
+          <i class="fa-solid fa-trash"></i>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,4 +1,4 @@
 $('#comment-post-<%= @post.id.to_s %>').
 html('<%= j render @post.comments, post: @post %>');
 $('#comment-form-post-<%= @post.id.to_s %> #comment_body').val("");
-console.log("create comment success");
+console.log("new comment success");

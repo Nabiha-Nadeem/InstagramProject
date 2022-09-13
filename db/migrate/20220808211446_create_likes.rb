@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# to create likes
+# to new likes
 class CreateLikes < ActiveRecord::Migration[5.2]
   def change
     create_table :likes do |t|

@@ -1,0 +1,22 @@
+<div class="info-box">
+  <% if current_user.pages.count < 1 %>
+    <div class="row text-center">
+      <span class="request-text">
+        No pages owned!
+      </span>
+    </div>
+  <% else %>
+    <% current_user.pages.each do |page| %>
+      <div class="row">
+        <div class="info-col">
+          <%= image_tag(page.avatar, class: "thumbnail-avatar") %>
+          <%= link_to page.fullname, user_path(page), class: "btn post-username" %>
+        </div>
+
+        <div class="role">
+        <a><%= current_user.user_role(page) %></a>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>

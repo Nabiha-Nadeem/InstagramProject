@@ -1,0 +1,49 @@
+<div class="main-form">
+  <div class="container">
+    <div class="text-left">
+      <div class="box-center">
+
+
+        <%= form_for @page, :html => {:multipart => true} do |f| %>
+
+          <!-- Message to display -->
+          <h6>
+            <strong> Create your page & connect with millions of users! </strong>
+          </h6>
+          <!-- Message to display -->
+
+          <br>
+
+          <!-- Form fields -->
+          <div class="form-group">
+            <span class="form-header"> Change Page Photo </span>
+            <%= f.file_field :avatar, class: "form-control" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_field :fullname, autofocus: true, placeholder: "Name", class: "form-control"%>
+          </div>
+
+          <div class="form-group">
+            <%= f.text_area :bio, placeholder: "Description", class: "form-control" %>
+          </div>
+
+          <div class="field">
+            <%= f.hidden_field :is_private, value: false %>
+            <%= f.hidden_field :type, value: 'Page' %>
+            <%= f.hidden_field :email, value: '' %>
+            <%= f.hidden_field :password, value: '' %>
+            <%= f.hidden_field :password_confirmation, value: '' %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Create Page", class: "btn btn-primary" %>
+          </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+</div>

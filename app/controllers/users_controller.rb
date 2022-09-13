@@ -8,6 +8,9 @@ class UsersController < ApplicationController
 
   def show
     @posts = @user.posts
+    @post_new = Post.new
+    @story = Story.new
+    @stories = @user.stories
   end
 
   def index
