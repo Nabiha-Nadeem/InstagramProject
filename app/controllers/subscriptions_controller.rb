@@ -3,16 +3,16 @@
 # controller to manage subscriptions
 class SubscriptionsController < ApplicationController
   before_action :find_user, only: :index
+  PRICE_ID = 'price_1LhZcMKKYhkmO3hZGQ47vrKJ'
 
   def new; end
 
   def create
-    price_id = 'price_1LhZcMKKYhkmO3hZGQ47vrKJ'
     user_id = params[:id]
     session = Stripe::Checkout::Session.create({
                                                  success_url: subscriptions_url(id: user_id), cancel_url: root_url,
                                                  payment_method_types: ['card'], mode: 'subscription',
-                                                 line_items: [{ quantity: 1, price: price_id }]
+                                                 line_items: [{ quantity: 1, price: PRICE_ID }]
                                                })
     redirect_to session[:url]
   end
