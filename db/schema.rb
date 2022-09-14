@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_09_09_135702) do
+ActiveRecord::Schema.define(version: 2022_09_14_140818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 2022_09_09_135702) do
     t.string "fullname", default: "", null: false
     t.text "bio"
     t.string "type"
+    t.boolean "subscribed", default: false
     t.index ["fullname"], name: "index_users_on_fullname"
   end
 

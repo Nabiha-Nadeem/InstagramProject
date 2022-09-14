@@ -39,7 +39,7 @@ class RelationshipsController < ApplicationController
   end
 
   def find_rel
-    @page = Page.find_by id: params[:id]
+    @page = Page.find_by(id: params[:id])
     if @page.accounts.count > 1
       @role = UserPageRelationship.find_by(page_id: params[:id], user_id: params[:account])
       return if @role

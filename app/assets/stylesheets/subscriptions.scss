@@ -1,0 +1,38 @@
+@import "shared-variables";
+
+.plan-image{
+  width: 80%;
+  margin: auto;
+}
+.premium-wrapper{
+  margin: 50px auto;
+  width: 600px;
+  background: linear-gradient(to right, #d7c1f6 0%, #ffc9d2 100%) repeat-x;
+  border: 1px solid $border-color;
+  padding: 50px 80px;
+  text-align: center;
+  border-radius: 5%;
+}
+.plan-title{
+  margin-top: 40px;
+  color: #5f0e91;
+  font-weight: bolder;
+}
+.plan-description{
+  color: rebeccapurple;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.premium-button{
+  width: fit-content;
+  padding: 15px 25px;
+  background: linear-gradient(to right, #971ed4 0%, #f025d6 100%) repeat-x;
+  color: white;
+  font-weight: bold;
+  border-radius: 20px;
+  font-size: 12px;
+}
+.premium-button:hover {
+  opacity: 70%;
+}

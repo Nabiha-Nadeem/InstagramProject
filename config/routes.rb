@@ -27,4 +27,6 @@ Rails.application.routes.draw do
 
   resources :comments, only: %i[edit create destroy update], concerns: :likeable
   resources :stories, only: %i[show create destroy], concerns: :imageable
+
+  resources :subscriptions, only: %i[new create index]
 end

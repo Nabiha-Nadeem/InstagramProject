@@ -2,7 +2,7 @@
 
 # pages model
 class Page < User
-  has_many :user_page_relationships, foreign_key: :page_id
+  has_many :user_page_relationships, foreign_key: :page_id, inverse_of: :page
   has_many :accounts, through: :user_page_relationships
 
   def user_role(user_id)

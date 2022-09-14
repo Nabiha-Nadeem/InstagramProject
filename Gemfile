@@ -24,6 +24,7 @@ gem 'cloudinary'
 gem 'devise'
 gem 'jquery-rails'
 gem 'pundit'
+gem 'stripe'
 gem 'whenever'
 
 # Use CoffeeScript for .coffee assets and views
