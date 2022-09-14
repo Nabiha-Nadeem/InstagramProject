@@ -7,7 +7,7 @@ class PagesController < ApplicationController
   before_action :find_page, only: %i[edit update destroy show]
 
   def create
-    @page = Page.create(page_params)
+    @page = Page.new(page_params)
     if @page.save
       save_role(current_user.id, @page.id, 'admin')
     else
@@ -51,7 +51,7 @@ class PagesController < ApplicationController
   private
 
   def find_page
-    @page = Page.find_by id: params[:id]
+    @page = Page.find_by(id: params[:id])
 
     return if @page
 
@@ -60,6 +60,6 @@ class PagesController < ApplicationController
   end
 
   def page_params
-    params.require(:page).permit!
+    params.require(:page).permit(:bio, :fullname)
   end
 end

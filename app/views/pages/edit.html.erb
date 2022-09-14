@@ -27,13 +27,13 @@
             <%= f.submit "Update", class: "btn btn-primary" %>
           </div>
 
-          <% if @page.user_role(current_user) == 'admin' %>
+        <% end %>
+
+        <% if @page.user_role(current_user) == 'admin' %>
             <span class="form-header del-acc"> Delete account?
               <%= button_to "Delete Page", page_path(@page), data: { confirm: "Are you sure?" },
                             method: :delete, class: "btn btn-primary" %>
             </span>
-          <% end %>
-
         <% end %>
       </div>
     </div>
