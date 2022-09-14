@@ -3,8 +3,20 @@
 # to handle likes
 class LikesController < ApplicationController
   before_action :authenticate_user!
+
   def create
     @parent, @id, @name = parent
+    if @parent
+      create_helper
+    else
+      flash[:alert] = 'Resource to like not found!'
+      redirect_to users_path
+    end
+  end
+
+  private
+
+  def create_helper
     if already_liked?(@parent, @name)
       flash[:alert] = 'You can like only once!'
       redirect_to post_path(@id)
@@ -14,19 +26,14 @@ class LikesController < ApplicationController
     end
   end
 
-  private
-
   def parent
     if params[:post_id]
-      parent_elem = Post.find params[:post_id]
-      id = parent_elem.id
-      name = 'Post'
+      parent_element = Post.find_by(id: params[:post_id])
+      return [parent_element, parent_element.id, 'Post'] if parent_element
     elsif params[:comment_id]
-      parent_elem = Comment.find params[:comment_id]
-      id = parent_elem.post_id
-      name = 'Comment'
+      parent_element = Comment.find_by(id: params[:comment_id])
+      return [parent_element, parent_element.post_id, 'Comment'] if parent_element
     end
-    [parent_elem, id, name]
   end
 
   def already_liked?(parent, name)
