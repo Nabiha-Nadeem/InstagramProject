@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 
 gem 'bootstrap', '~> 4.0.0'
-gem 'carrierwave', '~> 1.0'
+gem 'carrierwave', '~> 2.2'
 gem 'cloudinary'
 gem 'devise'
 gem 'jquery-rails'
